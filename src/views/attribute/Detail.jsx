@@ -130,8 +130,8 @@ class AttributeDetail extends Component {
                             <Select style={{
                                 width: Helper.inputWidth
                             }} placeholder="请选类型">
-                                <Option value="normal">normal</Option>
-                                <Option value="sku">sku</Option>
+                                <Option value="NORMAL">NORMAL</Option>
+                                <Option value="SKU">SKU</Option>
                             </Select>
                         )}
                     </FormItem>
@@ -145,11 +145,11 @@ class AttributeDetail extends Component {
                             <Select style={{
                                 width: Helper.inputWidth
                             }} placeholder="请选输入框">
-                                <Option value="text">text</Option>
-                                <Option value="select">select</Option>
-                                <Option value="number">number</Option>
-                                <Option value="datetime">datetime</Option>
-                                <Option value="image">image</Option>
+                                <Option value="TEXT">TEXT</Option>
+                                <Option value="SELECT">SELECT</Option>
+                                <Option value="NUMBER">NUMBER</Option>
+                                <Option value="DATETIME">DATETIME</Option>
+                                <Option value="IMAGE">IMAGE</Option>
                             </Select>
                         )}
                     </FormItem>

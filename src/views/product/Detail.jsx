@@ -78,7 +78,7 @@ class ProductDetail extends Component {
 
                 for (let i = 0; i < data.categoryAttributeList.length; i++) {
                     let category_attribute = data.categoryAttributeList[i]
-                    if (category_attribute.attribute_type == 'sku') {
+                    if (category_attribute.attribute_type == 'SKU') {
                         let item = [];
 
                         for (let k = 0; k < category_attribute.attribute_default_value.length; k++) {
@@ -191,7 +191,7 @@ class ProductDetail extends Component {
 
                 for (let i = 0; i < data.length; i++) {
                     let category_attribute = data[i];
-                    if (category_attribute.attribute_type == 'sku') {
+                    if (category_attribute.attribute_type == 'SKU') {
                         let item = [];
 
                         for (let k = 0; k < category_attribute.attribute_default_value.length; k++) {
@@ -665,7 +665,7 @@ class ProductDetail extends Component {
                                 }
                             }
 
-                            if (item.attribute_type == 'sku') {
+                            if (item.attribute_type == 'SKU') {
                                 for (let i = 0; i < item.attribute_default_value.length; i++) {
                                     options.push({
                                         label: item.attribute_default_value[i],
@@ -674,7 +674,7 @@ class ProductDetail extends Component {
                                 }
                             }
                             return (
-                                item.attribute_type == 'sku' ?
+                                item.attribute_type == 'SKU' ?
                                     <FormItem key={item.attribute_id} {...Helper.formItemLayout}
                                               label={item.attribute_name}>
                                         {
