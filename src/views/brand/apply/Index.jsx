@@ -1,46 +1,47 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Spin, Row, Col, Table, Button, Modal } from 'antd'
-import { connect } from 'react-redux'
-import { SET_SPIN } from '../../../commons/Constant'
-import { setAction } from '../../../actions/Index'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
+import {Row, Col, Table, Button} from 'antd';
+import {connect} from 'react-redux';
+import {SET_SPIN, SET_BRAND_APPLY} from '../../../commons/Constant';
+import {setAction} from '../../../actions/Index';
+import Helper from '../../../commons/Helper';
 
-import Helper from '../../../commons/Helper'
-
-import styles from '../../Style.less'
-
-const confirm = Modal.confirm
-
-let page = 1
+import styles from '../../Style.less';
 
 class BrandApplyIndex extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            page: page,
+            page: this.props.brandApplyReducer.page,
             total: 0,
             list: []
         }
     }
 
     componentDidMount() {
-        this.props.onSelectMenu('/brand/apply/index')
+        this.props.onSelectMenu('/brand/apply/index');
 
-        this.load(page)
+        this.load(this.state.page);
     }
 
-    onChange = function(currentPage) {
-        this.load(currentPage)
+    componentWillUnmount() {
+        this.props.setAction(SET_BRAND_APPLY, {
+            page: this.state.page,
+        });
     }
 
-    load = function(currentPage) {
-        let self = this
+    onChange = function (currentPage) {
+        this.load(currentPage);
+    }
+
+    load = function (currentPage) {
+        let self = this;
 
         self.props.setAction(SET_SPIN, {
             isLoad: true
-        })
+        });
 
         Helper.ajax({
             url: '/brand/apply/list',
@@ -48,29 +49,27 @@ class BrandApplyIndex extends Component {
                 page: currentPage,
                 limit: Helper.limit
             },
-            success: function(data) {
-                page = currentPage
-
+            success: function (data) {
                 self.setState({
                     page: currentPage,
                     total: data.total,
                     list: data.list
-                })
+                });
             },
-            complete: function() {
+            complete: function () {
                 self.props.setAction(SET_SPIN, {
                     isLoad: false
-                })
+                });
             }
         })
     }
 
-    review = function(brand_id, user_id) {
-        let self = this
+    review = function (brand_id, user_id) {
+        let self = this;
 
         self.props.setAction(SET_SPIN, {
             isLoad: true
-        })
+        });
 
         Helper.ajax({
             url: '/brand/apply/review',
@@ -78,37 +77,22 @@ class BrandApplyIndex extends Component {
                 brand_id: brand_id,
                 user_id: user_id
             },
-            success: function(data) {
-                self.load(page)
+            success: function (data) {
+                self.load(page);
             },
-            complete: function() {
+            complete: function () {
                 self.props.setAction(SET_SPIN, {
                     isLoad: false
-                })
+                });
             }
-        })
+        });
     }
 
     onClickEdit(brand_id, user_id) {
         this.props.router.push({
             pathname: '/brand/apply/edit/' + brand_id + '/' + user_id,
-            query: {
-
-            }
-        })
-    }
-
-    onClickReview(brand_id, user_id) {
-        let self = this
-
-        confirm({
-            title: Helper.message,
-            content: '您确定通过审核吗？',
-            onOk() {
-                self.review(brand_id, user_id)
-            },
-            onCancel() {}
-        })
+            query: {}
+        });
     }
 
     render() {
@@ -129,47 +113,48 @@ class BrandApplyIndex extends Component {
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
-            <span>
-          <a onClick={this.onClickEdit.bind(this, record.brand_id, record.user_id)}>查看</a>
-          {
-                record.brand_apply_review_status ?
-                    ''
-                    :
-                    <span>
-              <span className="ant-divider"></span>
-              <a onClick={this.onClickEdit.bind(this, record.brand_id, record.user_id)}>待审核</a>
-            </span>
-                }
-        </span>
+                <span>
+                  <a onClick={this.onClickEdit.bind(this, record.brand_id, record.user_id)}>查看</a>
+                    {
+                        record.brand_apply_review_status ?
+                            ''
+                            :
+                            <span>
+                      <span className="ant-divider"/>
+                      <a onClick={this.onClickEdit.bind(this, record.brand_id, record.user_id)}>待审核</a>
+                    </span>
+                    }
+                </span>
             )
-        }]
+        }];
 
         const pagination = {
             current: this.state.page,
             total: this.state.total,
             pageSize: Helper.limit,
             onChange: this.onChange.bind(this)
-        }
+        };
 
         return (
             <div>
-        <Row className={styles.contentTitle}>
-          <Col span={12}>
-            <h2>品牌代理申请列表</h2>
-          </Col>
-          <Col span={12} className={styles.contentMenu}>
-            <Button type="default" icon="reload" size="default" className="button-reload" onClick={this.load.bind(this, page)}>刷新</Button>
-          </Col>
-        </Row>
+                <Row className={styles.contentTitle}>
+                    <Col span={12}>
+                        <h2>品牌代理申请列表</h2>
+                    </Col>
+                    <Col span={12} className={styles.contentMenu}>
+                        <Button type="default" icon="reload" size="default" className="button-reload"
+                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                    </Col>
+                </Row>
 
-        <div className={styles.contentMain}>
-          <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
-        </div>
-      </div>
+                <div className={styles.contentMain}>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                </div>
+            </div>
         )
     }
 }
 
 export default withRouter(connect((state) => state, {
     setAction
-})(BrandApplyIndex))
+})(BrandApplyIndex));

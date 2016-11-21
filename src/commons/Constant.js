@@ -2,6 +2,8 @@ export const SET_SPIN = 'SET_SPIN';
 
 export const SET_BRAND = 'SET_BRAND';
 
+export const SET_BRAND_APPLY = 'SET_BRAND_APPLY';
+
 export const SET_PRODUCT = 'SET_PRODUCT';
 
 export const SET_AUTHORIZATION = 'SET_AUTHORIZATION';
@@ -21,3 +23,7 @@ export const SET_ROLE = 'SET_ROLE';
 export const SET_MEMBER_LEVEL = 'SET_MEMBER_LEVEL';
 
 export const SET_ORDER = 'SET_ORDER';
+
+export const SET_CATEGORY = 'SET_CATEGORY';
+
+export const SET_CATEGORY_ATTRIBUTE = 'SET_CATEGORY_ATTRIBUTE';

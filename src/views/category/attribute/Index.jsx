@@ -1,43 +1,45 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Spin, Row, Col, Breadcrumb, Table, Button, Modal } from 'antd'
-import { connect } from 'react-redux'
-import { SET_SPIN } from '../../../commons/Constant'
-import { setAction } from '../../../actions/Index'
-import Helper from '../../../commons/Helper'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
+import {Row, Col, Table, Button, Popconfirm} from 'antd';
+import {connect} from 'react-redux';
+import {SET_SPIN, SET_CATEGORY_ATTRIBUTE} from '../../../commons/Constant';
+import {setAction} from '../../../actions/Index';
+import Helper from '../../../commons/Helper';
 
-import styles from '../../Style.less'
-
-const confirm = Modal.confirm
-
-let page = 1
+import styles from '../../Style.less';
 
 class CategoryAttributeIndex extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            page: page,
+            page: this.props.categoryAttributeReducer.page,
             total: 0,
             list: []
         }
     }
 
     componentDidMount() {
-        this.load(page)
+        this.load(this.state.page);
     }
 
-    onChange = function(currentPage) {
-        this.load(currentPage)
+    componentWillUnmount() {
+        this.props.setAction(SET_CATEGORY_ATTRIBUTE, {
+            page: this.state.page,
+        });
     }
 
-    load = function(currentPage) {
-        let self = this
+    onChange = function (currentPage) {
+        this.load(currentPage);
+    }
+
+    load = function (currentPage) {
+        let self = this;
 
         self.props.setAction(SET_SPIN, {
             isLoad: true
-        })
+        });
 
         Helper.ajax({
             url: '/product/category/attribute/list',
@@ -46,29 +48,51 @@ class CategoryAttributeIndex extends Component {
                 limit: Helper.limit,
                 category_id: self.props.category_id
             },
-            success: function(data) {
-                page = currentPage
-
+            success: function (data) {
                 self.setState({
                     page: currentPage,
                     total: data.total,
                     list: data
-                })
+                });
             },
-            complete: function() {
+            complete: function () {
                 self.props.setAction(SET_SPIN, {
                     isLoad: false
-                })
+                });
             }
-        })
+        });
     }
 
-    del = function(attribute_id) {
-        let self = this
+    del = function (attribute_id) {
+
+    }
+
+    onClickAdd(event) {
+        this.props.router.push({
+            pathname: '/product/category/attribute/add/' + this.props.category_id,
+            query: {}
+        });
+    }
+
+    onClickBack(event) {
+        event.preventDefault();
+
+        this.props.router.goBack();
+    }
+
+    onClickEdit(attribute_id) {
+        this.props.router.push({
+            pathname: '/product/category/attribute/edit/' + this.props.category_id + '/' + attribute_id,
+            query: {}
+        });
+    }
+
+    onClickDel(attribute_id) {
+        let self = this;
 
         self.props.setAction(SET_SPIN, {
             isLoad: true
-        })
+        });
 
         Helper.ajax({
             url: '/product/category/attribute/delete',
@@ -76,52 +100,15 @@ class CategoryAttributeIndex extends Component {
                 category_id: self.props.category_id,
                 attribute_id: attribute_id
             },
-            success: function(data) {
-                self.load(page)
+            success: function () {
+                self.load(this.state.page);
             },
-            complete: function() {
+            complete: function () {
                 self.props.setAction(SET_SPIN, {
                     isLoad: false
-                })
+                });
             }
-        })
-    }
-
-    onClickAdd(event) {
-        this.props.router.push({
-            pathname: '/product/category/attribute/add/' + this.props.category_id,
-            query: {
-
-            }
-        })
-    }
-
-    onClickBack(event) {
-        event.preventDefault()
-
-        this.props.router.goBack()
-    }
-
-    onClickEdit(attribute_id) {
-        this.props.router.push({
-            pathname: '/product/category/attribute/edit/' + this.props.category_id + '/' + attribute_id,
-            query: {
-
-            }
-        })
-    }
-
-    onClickDel(attribute_id) {
-        let self = this
-
-        confirm({
-            title: Helper.message,
-            content: Helper.delete,
-            onOk() {
-                self.del(attribute_id)
-            },
-            onCancel() {}
-        })
+        });
     }
 
     render() {
@@ -138,42 +125,48 @@ class CategoryAttributeIndex extends Component {
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
-            <span>
-          <a onClick={this.onClickEdit.bind(this, record.attribute_id)}>修改</a>
-          <span className="ant-divider"></span>
-          <a onClick={this.onClickDel.bind(this, record.attribute_id)}>删除</a>
-        </span>
+                <span>
+                  <a onClick={this.onClickEdit.bind(this, record.attribute_id)}>修改</a>
+                  <span className="ant-divider"/>
+                  <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
+                              onConfirm={this.onClickDel.bind(this, record.attribute_id)}>
+                    <a>删除</a>
+                  </Popconfirm>
+                </span>
             )
-        }]
+        }];
 
         const pagination = {
             current: this.state.page,
             total: this.state.total,
             pageSize: Helper.limit,
             onChange: this.onChange.bind(this)
-        }
+        };
 
         return (
             <div>
-        <Row className={styles.contentTitle}>
-          <Col span={12}>
-            <h2>{this.props.name}列表</h2>
-          </Col>
-          <Col span={12} className={styles.contentMenu}>
-            <Button icon="circle-left" size="default" className={styles.buttonReload} onClick={this.onClickBack.bind(this)}>返回</Button>
-            <Button type="default" icon="reload" size="default" className={styles.buttonReload} onClick={this.load.bind(this, page)}>刷新</Button>
-            <Button type="primary" icon="plus-circle" size="default" onClick={this.onClickAdd.bind(this)}>新增</Button>
-          </Col>
-        </Row>
+                <Row className={styles.contentTitle}>
+                    <Col span={12}>
+                        <h2>{this.props.name}列表</h2>
+                    </Col>
+                    <Col span={12} className={styles.contentMenu}>
+                        <Button icon="circle-left" size="default" className={styles.buttonReload}
+                                onClick={this.onClickBack.bind(this)}>返回</Button>
+                        <Button type="default" icon="reload" size="default" className={styles.buttonReload}
+                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                        <Button type="primary" icon="plus-circle" size="default"
+                                onClick={this.onClickAdd.bind(this)}>新增</Button>
+                    </Col>
+                </Row>
 
-        <div className={styles.contentMain}>
-          <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
-        </div>
-      </div>
+                <div className={styles.contentMain}>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                </div>
+            </div>
         )
     }
 }
 
 export default withRouter(connect((state) => state, {
     setAction
-})(CategoryAttributeIndex))
+})(CategoryAttributeIndex));

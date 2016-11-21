@@ -13,10 +13,14 @@ import operationReducer from './Operation';
 import roleReducer from './Role';
 import memberLevelReducer from './MemberLevel';
 import orderReducer from './Order';
+import brandApplyReducer from './BrandApply';
+import categoryReducer from './Category';
+import categoryAttributeReducer from './CategoryAttribute';
 
 const rootReducer = combineReducers({
     spinReducer,
     brandReducer,
+    brandApplyReducer,
     productReducer,
     authorizationReducer,
     adminReducer,
@@ -27,6 +31,8 @@ const rootReducer = combineReducers({
     roleReducer,
     memberLevelReducer,
     orderReducer,
+    categoryReducer,
+    categoryAttributeReducer,
     routing: routerReducer
 });
 

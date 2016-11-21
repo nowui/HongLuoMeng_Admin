@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import CategoryIndex from '../../category/Index'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
+import CategoryIndex from '../../category/Index';
 
 class ProductCategoryIndex extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     componentDidMount() {
-        this.props.onSelectMenu('/product/category/index')
+        this.props.onSelectMenu('/product/category/index');
     }
 
     render() {
@@ -18,9 +18,9 @@ class ProductCategoryIndex extends Component {
                 "key": "attribute",
                 "name": "属性",
                 "url": "/product/category/attribute/index"
-            }]} />
+            }]}/>
         )
     }
 }
 
-export default withRouter(ProductCategoryIndex)
+export default withRouter(ProductCategoryIndex);

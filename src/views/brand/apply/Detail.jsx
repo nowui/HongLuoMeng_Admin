@@ -126,19 +126,19 @@ class BrandDetail extends Component {
     onChangeCategory(value) {
         this.props.form.setFieldsValue({
             category_id: value
-        })
+        });
     }
 
     onChangeImage(list) {
         this.setState({
             brand_logo: list
-        })
+        });
     }
 
     onChangeContent(content) {
         this.setState({
             brand_agreement: content
-        })
+        });
     }
 
     render() {
@@ -235,8 +235,8 @@ class BrandDetail extends Component {
     }
 }
 
-BrandDetail = Form.create({})(BrandDetail)
+BrandDetail = Form.create({})(BrandDetail);
 
 export default withRouter(connect((state) => state, {
     setAction
-})(BrandDetail))
+})(BrandDetail));

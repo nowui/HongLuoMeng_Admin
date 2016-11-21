@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Row, Col, Table, Button, Modal } from 'antd'
-import { connect } from 'react-redux'
-import { SET_SPIN, SET_LOG } from '../../commons/Constant'
-import { setAction } from '../../actions/Index'
-import Helper from '../../commons/Helper'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
+import {Row, Col, Table, Button} from 'antd';
+import {connect} from 'react-redux';
+import {SET_SPIN, SET_LOG} from '../../commons/Constant';
+import {setAction} from '../../actions/Index';
+import Helper from '../../commons/Helper';
 
-import styles from '../Style.less'
+import styles from '../Style.less';
 
 class LogIndex extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             page: this.props.logReducer.page,
@@ -21,27 +21,27 @@ class LogIndex extends Component {
     }
 
     componentDidMount() {
-        this.props.onSelectMenu('/log/index')
+        this.props.onSelectMenu('/log/index');
 
-        this.load(this.state.page)
+        this.load(this.state.page);
     }
 
     componentWillUnmount() {
         this.props.setAction(SET_LOG, {
             page: this.state.page,
-        })
+        });
     }
 
-    onChange = function(currentPage) {
-        this.load(currentPage)
+    onChange = function (currentPage) {
+        this.load(currentPage);
     }
 
-    load = function(currentPage) {
-        let self = this
+    load = function (currentPage) {
+        let self = this;
 
         self.props.setAction(SET_SPIN, {
             isLoad: true
-        })
+        });
 
         Helper.ajax({
             url: '/log/list',
@@ -49,50 +49,25 @@ class LogIndex extends Component {
                 page: currentPage,
                 limit: Helper.limit
             },
-            success: function(data) {
+            success: function (data) {
                 self.setState({
                     page: currentPage,
                     total: data.total,
                     list: data.list
-                })
+                });
             },
-            complete: function() {
+            complete: function () {
                 self.props.setAction(SET_SPIN, {
                     isLoad: false
-                })
+                });
             }
-        })
-    }
-
-    del = function(log_id) {
-        let self = this
-
-        self.props.setAction(SET_SPIN, {
-            isLoad: true
-        })
-
-        Helper.ajax({
-            url: '/log/delete',
-            data: {
-                log_id: log_id
-            },
-            success: function(data) {
-                self.load(page)
-            },
-            complete: function() {
-                self.props.setAction(SET_SPIN, {
-                    isLoad: false
-                })
-            }
-        })
+        });
     }
 
     onClickEdit(log_id) {
         this.props.router.push({
             pathname: '/log/edit/' + log_id,
-            query: {
-
-            }
+            query: {}
         })
     }
 
@@ -122,38 +97,39 @@ class LogIndex extends Component {
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
-            <span>
-          <a onClick={this.onClickEdit.bind(this, record.log_id)}>查看</a>
-        </span>
+                <span>
+              <a onClick={this.onClickEdit.bind(this, record.log_id)}>查看</a>
+            </span>
             )
-        }]
+        }];
 
         const pagination = {
             current: this.state.page,
             total: this.state.total,
             pageSize: Helper.limit,
             onChange: this.onChange.bind(this)
-        }
+        };
 
         return (
             <div>
                 <Row className={styles.contentTitle}>
-                      <Col span={12}>
-                            <h2>日志列表</h2>
-                      </Col>
-                      <Col span={12} className={styles.contentMenu}>
-                            <Button type="default" icon="reload" size="default" onClick={this.load.bind(this, this.state.page)}>刷新</Button>
-                      </Col>
+                    <Col span={12}>
+                        <h2>日志列表</h2>
+                    </Col>
+                    <Col span={12} className={styles.contentMenu}>
+                        <Button type="default" icon="reload" size="default"
+                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                    </Col>
                 </Row>
 
                 <div className={styles.contentMain}>
-                      <Table columns={columns} dataSource={this.state.list} pagination={pagination} />
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
                 </div>
-          </div>
+            </div>
         )
     }
 }
 
 export default withRouter(connect((state) => state, {
     setAction
-})(LogIndex))
+})(LogIndex));
