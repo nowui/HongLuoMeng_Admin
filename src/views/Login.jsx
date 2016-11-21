@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { Spin, Form, Input, Button } from 'antd'
-import { connect } from 'react-redux'
-import { setSpin } from '../actions/Index'
 
 import Helper from '../commons/Helper'
 
@@ -113,9 +111,7 @@ class Login extends Component {
 
 Login = Form.create({
     onFieldsChange(props, fields) {
-        for ( var key of Object.keys(fields) ) {
-            //console.log(key + ": " + fields[key].value)
-        }
+
     }
 })(Login)
 
