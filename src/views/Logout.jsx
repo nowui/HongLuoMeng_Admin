@@ -1,23 +1,21 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
 
-import Helper from '../commons/Helper'
+import Helper from '../commons/Helper';
 
 class Logout extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     componentDidMount() {
-        Helper.logout()
+        Helper.logout();
 
         this.props.router.push({
             pathname: '/login',
-            query: {
-
-            }
-        })
+            query: {}
+        });
     }
 
     render() {
@@ -27,4 +25,4 @@ class Logout extends Component {
     }
 }
 
-export default withRouter(Logout)
+export default withRouter(Logout);

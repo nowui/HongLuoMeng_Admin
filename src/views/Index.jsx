@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { Row, Col, Icon } from 'antd'
-import createG2 from 'g2-react'
-import { Stat } from 'g2'
-import { connect } from 'react-redux'
-import { SET_SPIN, SET_BRAND } from '../commons/Constant'
-import { setAction } from '../actions/Index'
-import Helper from '../commons/Helper'
+import React, {Component} from 'react';
+import {withRouter} from 'react-router';
+import {Row, Col, Icon} from 'antd';
+import createG2 from 'g2-react';
+import {Stat} from 'g2';
+import {connect} from 'react-redux';
+import {setAction} from '../actions/Index';
 
-import styles from './Style.less'
+import styles from './Style.less';
 
 const data1 = [
     {
@@ -161,7 +159,7 @@ const data1 = [
         "price": 40,
         "名称": "流出量"
     }
-]
+];
 
 const data2 = [{
     "name": 14513,
@@ -859,23 +857,23 @@ const data2 = [{
     "x": 8.24,
     "y": 8.29,
     "z": 5.12
-}]
+}];
 
 const Line = createG2(chart => {
     chart.line().position('time*price').color('名称').shape('spline').size(2);
     chart.render();
-})
+});
 
 const Pie = createG2(chart => {
     chart.coord('theta');
     chart.intervalStack().position(Stat.summary.proportion()).color('城市');
     chart.render();
-})
+});
 
 class Index extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             total: 0,
@@ -889,106 +887,106 @@ class Index extends Component {
     }
 
     componentDidMount() {
-        this.props.onSelectMenu('/index')
+        this.props.onSelectMenu('/index');
     }
 
     render() {
         return (
             <div>
-        <Row className={styles.contentTitle}>
-            <Col span={12}>
-                <h2>系统首页</h2>
-            </Col>
-                <Col span={12} className={styles.contentMenu}>
-            </Col>
-        </Row>
+                <Row className={styles.contentTitle}>
+                    <Col span={12}>
+                        <h2>系统首页</h2>
+                    </Col>
+                    <Col span={12} className={styles.contentMenu}>
+                    </Col>
+                </Row>
 
-        <Row className={styles.contentBoxes}>
-            <Col span={24} className={styles.contentBoxesTitle}>
-                <div><h3>数据统计</h3></div>
-            </Col>
-            <Col span={6} className={styles.contentBoxesCol}>
-                <div className={styles.indexCircle} style={{
-                borderColor: '#2db7f5',
-                backgroundColor: '#2db7f5'
-            }}>
-                  <Icon type="notification" className={styles.indexIcon} />
-                </div>
-                <div className={styles.indexText}>待发货订单</div>
-                <div className={styles.indexNumber}>000</div>
-            </Col>
-            <Col span={6} className={styles.contentBoxesCol}>
-                <div className={styles.indexCircle} style={{
-                borderColor: '#52d2e5',
-                backgroundColor: '#52d2e5'
-            }}>
-                    <Icon type="shopping-cart" className={styles.indexIcon} />
-                </div>
-                <div className={styles.indexText}>昨日订单</div>
-                <div className={styles.indexNumber}>000</div>
-            </Col>
-            <Col span={6} className={styles.contentBoxesCol}>
-                <div className={styles.indexCircle} style={{
-                borderColor: '#fd8c4a',
-                backgroundColor: '#fd8c4a'
-            }}>
-                  <Icon type="pay-circle-o" className={styles.indexIcon} />
-                </div>
-                <div className={styles.indexText}>昨日交易额</div>
-                <div className={styles.indexNumber}>000000.00</div>
-            </Col>
-            <Col span={6} className={styles.contentBoxesCol}>
-                <div className={styles.indexCircle} style={{
-                borderColor: '#ab97d2',
-                backgroundColor: '#ab97d2'
-            }}>
-                  <Icon type="user" className={styles.indexIcon} />
-                </div>
-                <div className={styles.indexText}>昨日用户注册数</div>
-                <div className={styles.indexNumber}>000</div>
-            </Col>
-        </Row>
-
-        <Row style={{
-                marginTop: '18px'
-            }}>
-            <Col span={16}>
                 <Row className={styles.contentBoxes}>
-                    <Col span={24} className={styles.contentBoxesCol}>
-                        <div><h3>流量走势</h3></div>
+                    <Col span={24} className={styles.contentBoxesTitle}>
+                        <div><h3>数据统计</h3></div>
                     </Col>
-                    <Col span={24} className={styles.contentBoxesCol} style={{
-                paddingTop: '0px'
-            }}>
-                        <Line data={data1} forceFit={true} width={300} height={300} plotCfg={{
-                margin: [10, 65, 30, 30]
-            }} ref="myChart1">
-                        </Line>
+                    <Col span={6} className={styles.contentBoxesCol}>
+                        <div className={styles.indexCircle} style={{
+                            borderColor: '#2db7f5',
+                            backgroundColor: '#2db7f5'
+                        }}>
+                            <Icon type="notification" className={styles.indexIcon}/>
+                        </div>
+                        <div className={styles.indexText}>待发货订单</div>
+                        <div className={styles.indexNumber}>000</div>
+                    </Col>
+                    <Col span={6} className={styles.contentBoxesCol}>
+                        <div className={styles.indexCircle} style={{
+                            borderColor: '#52d2e5',
+                            backgroundColor: '#52d2e5'
+                        }}>
+                            <Icon type="shopping-cart" className={styles.indexIcon}/>
+                        </div>
+                        <div className={styles.indexText}>昨日订单</div>
+                        <div className={styles.indexNumber}>000</div>
+                    </Col>
+                    <Col span={6} className={styles.contentBoxesCol}>
+                        <div className={styles.indexCircle} style={{
+                            borderColor: '#fd8c4a',
+                            backgroundColor: '#fd8c4a'
+                        }}>
+                            <Icon type="pay-circle-o" className={styles.indexIcon}/>
+                        </div>
+                        <div className={styles.indexText}>昨日交易额</div>
+                        <div className={styles.indexNumber}>000000.00</div>
+                    </Col>
+                    <Col span={6} className={styles.contentBoxesCol}>
+                        <div className={styles.indexCircle} style={{
+                            borderColor: '#ab97d2',
+                            backgroundColor: '#ab97d2'
+                        }}>
+                            <Icon type="user" className={styles.indexIcon}/>
+                        </div>
+                        <div className={styles.indexText}>昨日用户注册数</div>
+                        <div className={styles.indexNumber}>000</div>
                     </Col>
                 </Row>
-            </Col>
-            <Col span={8}>
-                <Row className={styles.contentBoxes} style={{
-                marginLeft: '18px'
-            }}>
-                    <Col span={24} className={styles.contentBoxesCol}>
-                        <div><h3>区域分布</h3></div>
+
+                <Row style={{
+                    marginTop: '18px'
+                }}>
+                    <Col span={16}>
+                        <Row className={styles.contentBoxes}>
+                            <Col span={24} className={styles.contentBoxesCol}>
+                                <div><h3>流量走势</h3></div>
+                            </Col>
+                            <Col span={24} className={styles.contentBoxesCol} style={{
+                                paddingTop: '0px'
+                            }}>
+                                <Line data={data1} forceFit={true} width={300} height={300} plotCfg={{
+                                    margin: [10, 65, 30, 30]
+                                }} ref="myChart1">
+                                </Line>
+                            </Col>
+                        </Row>
                     </Col>
-                    <Col span={24} className={styles.contentBoxesCol} style={{
-                paddingTop: '0px'
-            }}>
-                        <Pie data={data2} forceFit={true} width={300} height={300} plotCfg={{
-                margin: [10, 60, 10, 10]
-            }} ref="myChart2"></Pie>
+                    <Col span={8}>
+                        <Row className={styles.contentBoxes} style={{
+                            marginLeft: '18px'
+                        }}>
+                            <Col span={24} className={styles.contentBoxesCol}>
+                                <div><h3>区域分布</h3></div>
+                            </Col>
+                            <Col span={24} className={styles.contentBoxesCol} style={{
+                                paddingTop: '0px'
+                            }}>
+                                <Pie data={data2} forceFit={true} width={300} height={300} plotCfg={{
+                                    margin: [10, 60, 10, 10]
+                                }} ref="myChart2"/>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
-            </Col>
-        </Row>
-      </div>
+            </div>
         )
     }
 }
 
 export default withRouter(connect((state) => state, {
     setAction
-})(Index))
+})(Index));

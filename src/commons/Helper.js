@@ -1,5 +1,5 @@
-import reqwest from 'reqwest'
-import { message } from 'antd'
+import reqwest from 'reqwest';
+import {message} from 'antd';
 
 const Helper = {
     host: 'http://localhost:8080',
@@ -25,10 +25,10 @@ const Helper = {
     delete: '删除后将无法恢复，您确定要删除吗？',
     yes: '确定',
     no: '取消',
-    notificationSuccess: function() {
-        message.success(this.description, this.duration)
+    notificationSuccess: function () {
+        message.success(this.description, this.duration);
     },
-    ajax: function(config) {
+    ajax: function (config) {
         reqwest({
             url: this.host + config.url,
             type: 'json',
@@ -41,30 +41,30 @@ const Helper = {
                 'version': this.version
             },
             data: JSON.stringify(config.data),
-            success: function(response) {
+            success: function (response) {
                 if (response.code == 200) {
-                    config.success(response.data)
+                    config.success(response.data);
                 } else {
-                    message.error(response.message, this.duration)
+                    message.error(response.message, this.duration);
                 }
             },
-            error: function(error) {
-                message.error('网络发生错误', this.duration)
+            error: function () {
+                message.error('网络发生错误', this.duration);
             },
-            complete: function(response) {
-                config.complete()
+            complete: function () {
+                config.complete();
             }
         })
     },
     getToken() {
-        return localStorage.getItem(this.token)
+        return localStorage.getItem(this.token);
     },
-    login: function(token) {
-        localStorage.setItem(this.token, token)
+    login: function (token) {
+        localStorage.setItem(this.token, token);
     },
-    logout: function() {
-        localStorage.removeItem(this.token)
+    logout: function () {
+        localStorage.removeItem(this.token);
     }
-}
+};
 
-export default Helper
+export default Helper;

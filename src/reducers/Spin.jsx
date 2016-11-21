@@ -1,16 +1,17 @@
-import { SET_SPIN } from '../commons/Constant'
+import {SET_SPIN} from '../commons/Constant';
 
 const initialState = {
-  isLoad: false
-}
+    isLoad: false
+};
 
-export default function spinReducer (state = initialState, action) {
-    switch(action.type) {
+export default function spinReducer(state = initialState, action) {
+    switch (action.type) {
         case SET_SPIN:
             return {
-              isLoad : action.data.isLoad
+                isLoad: action.data.isLoad
             };
 
-        default : return state;
+        default :
+            return state;
     }
 }
