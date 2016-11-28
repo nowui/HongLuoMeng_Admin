@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button, Popconfirm} from 'antd';
+import {Row, Col, Table, Button, Popconfirm, Form, Input} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_BRAND} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -102,6 +102,9 @@ class BrandIndex extends Component {
     }
 
     render() {
+        const FormItem = Form.Item;
+        const {getFieldDecorator} = this.props.form;
+
         const columns = [{
             title: '名称',
             dataIndex: 'brand_name',
@@ -136,20 +139,46 @@ class BrandIndex extends Component {
                         <h2>品牌列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
-                        <Button type="default" icon="reload" size="default" className={styles.buttonReload}
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>
                 </Row>
 
-                <div className={styles.contentMain}>
+                <Form horizontal className={styles.contentSearch}>
+                    <Row>
+                        <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="名称">
+                                {getFieldDecorator('brand_name', {
+                                    initialValue: ''
+                                })(
+                                    <Input type="text" style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请输入品牌名称"/>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col sm={7}>
+                        </Col>
+                        <Col sm={7}>
+                        </Col>
+                        <Col sm={3} style={{
+                            textAlign: 'right'
+                        }}>
+                            <Button type="ghost" icon="search" size="default" className="button-reload"
+                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                        </Col>
+                    </Row>
+                </Form>
+
+                <div className={styles.contentSearchMain}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
                 </div>
             </div>
         )
     }
 }
+
+BrandIndex = Form.create({})(BrandIndex);
 
 export default withRouter(connect((state) => state, {
     setAction

@@ -149,14 +149,15 @@ class BrandDetail extends Component {
             <div>
                 <Row className={styles.contentTitle + ' ' + styles.contentTitleBottom}>
                     <Col span={12}>
-                        <h2>品牌表单</h2>
+                        <h2>品牌代理申请表单</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>
                     </Col>
                 </Row>
                 <Form horizontal className={styles.contentMain + ' ' + styles.contentMainPaddingTop}>
-                    <FormItem {...Helper.formItemLayout} label="名称">
+                    <h3>基本信息</h3>
+                    <FormItem {...Helper.formItemLayout} label="申请品牌">
                         {getFieldDecorator('brand_name', {
                             rules: [{
                                 required: true,
@@ -168,6 +169,17 @@ class BrandDetail extends Component {
                             }} placeholder="请输入品牌名称"/>
                         )}
                     </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="签约时间">
+                        {getFieldDecorator('apply_time', {
+                            initialValue: '三个月'
+                        })(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入品牌名称"/>
+                        )}
+                    </FormItem>
+                    <div className={styles.hr}></div>
+                    <h3>个人资料</h3>
                     <FormItem {...Helper.formItemLayout} label="申请人">
                         {getFieldDecorator('member_real_name', {
                             rules: [{
@@ -212,8 +224,37 @@ class BrandDetail extends Component {
                                 }}/>
                         }
                     </FormItem>
+                    <div className={styles.hr}></div>
+                    <h3>会员信息</h3>
+                    <FormItem {...Helper.formItemLayout} label="会员姓名">
+                        {getFieldDecorator('member_name', {
+                            initialValue: ''
+                        })(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入会员姓名"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="微博粉丝数">
+                        {getFieldDecorator('member_weibo_fans', {
+                            initialValue: ''
+                        })(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入微博粉丝数"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="微博好友数">
+                        {getFieldDecorator('member_weibo_friend', {
+                            initialValue: ''
+                        })(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入微好友丝数"/>
+                        )}
+                    </FormItem>
                     {
-                        this.state.brand_apply_review_status == 'waiting' ?
+                        this.state.brand_apply_review_status == 'WAIT' ?
                             <FormItem wrapperCol={{
                                 offset: Helper.formItemLayout.labelCol.span
                             }}>

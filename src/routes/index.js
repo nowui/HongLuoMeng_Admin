@@ -63,6 +63,9 @@ import CategoryEdit from '../views/category/Edit';
 import OrderIndex from '../views/order/Index';
 import OrderDetail from '../views/order/Detail';
 
+import ActivityIndex from '../views/activity/Index';
+import ActivityDetail from '../views/activity/Detail';
+
 import Helper from '../commons/Helper';
 
 const validate = function (next, replace, callback) {
@@ -148,6 +151,10 @@ const Routes = ({history = history}) => <Provider store={store}>
 
                 <Route path="order/index" component={OrderIndex}/>
                 <Route path="order/edit/:order_id" component={OrderDetail}/>
+
+                <Route path="activity/index" component={ActivityIndex}/>
+                <Route path="activity/add" component={ActivityDetail}/>
+                <Route path="activity/edit/:activity_id" component={ActivityDetail}/>
             </Route>
             <Route path="login" component={Login}/>
             <Route path="logout" component={Logout}/>

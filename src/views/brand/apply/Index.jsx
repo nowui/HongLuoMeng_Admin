@@ -97,17 +97,21 @@ class BrandApplyIndex extends Component {
 
     render() {
         const columns = [{
+            title: '会员名称',
+            dataIndex: 'member_real_name',
+            key: 'member_real_name'
+        }, {
             title: '品牌名称',
             dataIndex: 'brand_name',
             key: 'brand_name'
         }, {
-            title: '会员名称',
-            dataIndex: 'member_name',
-            key: 'member_name'
-        }, {
             title: '申请状态',
             dataIndex: 'brand_apply_review_status',
             key: 'brand_apply_review_status'
+        }, {
+            title: '申请时间',
+            dataIndex: 'brand_apply_create_time',
+            key: 'brand_apply_create_time'
         }, {
             width: 150,
             title: '操作',

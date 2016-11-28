@@ -16,6 +16,7 @@ import orderReducer from './Order';
 import brandApplyReducer from './BrandApply';
 import categoryReducer from './Category';
 import categoryAttributeReducer from './CategoryAttribute';
+import activityReducer from './Activity';
 
 const rootReducer = combineReducers({
     spinReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
     orderReducer,
     categoryReducer,
     categoryAttributeReducer,
+    activityReducer,
     routing: routerReducer
 });
 

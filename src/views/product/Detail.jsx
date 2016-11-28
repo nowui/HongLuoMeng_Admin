@@ -187,7 +187,8 @@ class ProductDetail extends Component {
 
                 if (typeof (data) == 'undefined') {
                     data = []
-                };
+                }
+                ;
 
                 for (let i = 0; i < data.length; i++) {
                     let category_attribute = data[i];
@@ -257,11 +258,13 @@ class ProductDetail extends Component {
             let categoryAttributeList = [];
             for (let i = 0; i < self.state.categoryAttributeList.length; i++) {
                 let categoryAttribute = self.state.categoryAttributeList[i];
-                categoryAttributeList.push({
-                    attribute_id: categoryAttribute.attribute_id,
-                    attribute_name: categoryAttribute.attribute_name,
-                    attribute_value: self.props.form.getFieldValue('categoryAttributeList.' + categoryAttribute.attribute_id)
-                });
+                if (categoryAttribute.attribute_type == 'NORMAL') {
+                    categoryAttributeList.push({
+                        attribute_id: categoryAttribute.attribute_id,
+                        attribute_name: categoryAttribute.attribute_name,
+                        attribute_value: self.props.form.getFieldValue('categoryAttributeList.' + categoryAttribute.attribute_id)
+                    });
+                }
             }
             values.categoryAttributeList = categoryAttributeList;
 
@@ -487,7 +490,6 @@ class ProductDetail extends Component {
                                 }
                             </Select>
                         )}
-
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="品牌">
                         {getFieldDecorator('brand_id', {
@@ -652,8 +654,8 @@ class ProductDetail extends Component {
                     <h3>SKU</h3>
                     {
                         this.state.categoryAttributeList.map(function (item, index) {
-                            const options = []
-                            const value = []
+                            const options = [];
+                            const value = [];
 
                             for (let i = 0; i < this.state.productSkuList.length; i++) {
                                 let productSku = this.state.productSkuList[i]
@@ -835,7 +837,7 @@ class ProductDetail extends Component {
                     {
                         this.state.categoryAttributeList.map(function (item) {
                             return (
-                                item.attribute_type == 'normal' ?
+                                item.attribute_type == 'NORMAL' ?
                                     <FormItem key={item.attribute_id} {...Helper.formItemLayout}
                                               label={item.attribute_name}>
                                         {getFieldDecorator('categoryAttributeList.' + item.attribute_id)(

@@ -107,6 +107,10 @@ class MemberLevelIndex extends Component {
             dataIndex: 'member_level_name',
             key: 'member_level_name'
         }, {
+            title: '粉丝数量',
+            dataIndex: 'member_level_value',
+            key: 'member_level_value'
+        }, {
             width: 150,
             title: '操作',
             dataIndex: '',

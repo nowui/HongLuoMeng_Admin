@@ -79,63 +79,63 @@ class LogDetail extends Component {
                 <Form horizontal className={styles.contentMain + ' ' + styles.contentMainPaddingTop}>
                     <FormItem {...Helper.formItemLayout} label="请求地址">
                         {getFieldDecorator('log_url')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求地址"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="请求数据">
                         {getFieldDecorator('log_request')(
-                            <Input type="textarea" rows={8} disabled={true} style={{
+                            <Input type="textarea" rows={8} style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求参数"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="返回数据">
                         {getFieldDecorator('log_response')(
-                            <Input type="textarea" rows={8} disabled={true} style={{
+                            <Input type="textarea" rows={8} style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入返回数据"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="请求状态">
                         {getFieldDecorator('log_code')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求状态"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="请求终端">
                         {getFieldDecorator('log_platform')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求状态"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="请求版本">
                         {getFieldDecorator('log_version')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求版本"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="IP地址">
                         {getFieldDecorator('log_ip_address')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入IP地址"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="请求时间">
                         {getFieldDecorator('log_create_time')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入请求时间"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="耗时(毫秒)">
                         {getFieldDecorator('log_run_time')(
-                            <Input type="text" disabled={true} style={{
+                            <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入耗时"/>
                         )}

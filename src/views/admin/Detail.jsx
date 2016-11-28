@@ -19,10 +19,10 @@ class AdminDetail extends Component {
     componentDidMount() {
         this.props.onSelectMenu('/admin/index');
 
-        self.props.form.setFieldsValue({});
+        this.props.form.setFieldsValue({});
 
-        if (self.props.route.path.indexOf('/edit') > -1) {
-            self.load();
+        if (this.props.route.path.indexOf('/edit') > -1) {
+            this.load();
         }
     }
 
@@ -52,13 +52,13 @@ class AdminDetail extends Component {
     onClickBack(event) {
         event.preventDefault();
 
-        self.props.router.goBack();
+        this.props.router.goBack();
     }
 
     onClickSubmit(event) {
         event.preventDefault();
 
-        self.props.form.validateFields((errors, values) => {
+        this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 return;
             }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button} from 'antd';
+import {Row, Col, Table, Button, Form, Input} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_ORDER} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -72,18 +72,25 @@ class OrderIndex extends Component {
     }
 
     render() {
+        const FormItem = Form.Item;
+        const {getFieldDecorator} = this.props.form;
+
         const columns = [{
             title: '订单号',
             dataIndex: 'order_no',
             key: 'order_no'
         }, {
             title: '订单价格',
-            dataIndex: 'order_payment_price',
-            key: 'order_payment_price'
+            dataIndex: 'order_pay_price',
+            key: 'order_pay_price'
         }, {
             title: '商品数量',
-            dataIndex: 'order_payment_amount',
-            key: 'order_payment_amount'
+            dataIndex: 'order_product_pay_amount',
+            key: 'order_product_pay_amount'
+        }, {
+            title: '状态',
+            dataIndex: 'order_flow_status',
+            key: 'order_flow_status'
         }, {
             width: 150,
             title: '操作',
@@ -109,18 +116,45 @@ class OrderIndex extends Component {
                         <h2>订单列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
-                        <Button type="default" icon="reload" size="default" className="button-reload"
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+
                     </Col>
                 </Row>
 
-                <div className={styles.contentMain}>
+                <Form horizontal className={styles.contentSearch}>
+                    <Row>
+                        <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="订单编号">
+                                {getFieldDecorator('order_no', {
+                                    initialValue: ''
+                                })(
+                                    <Input type="text" style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请输入订单编号"/>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col sm={7}>
+                        </Col>
+                        <Col sm={7}>
+                        </Col>
+                        <Col sm={3} style={{
+                            textAlign: 'right'
+                        }}>
+                            <Button type="ghost" icon="search" size="default" className="button-reload"
+                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                        </Col>
+                    </Row>
+                </Form>
+
+                <div className={styles.contentSearchMain}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
                 </div>
             </div>
         )
     }
 }
+
+OrderIndex = Form.create({})(OrderIndex);
 
 export default withRouter(connect((state) => state, {
     setAction

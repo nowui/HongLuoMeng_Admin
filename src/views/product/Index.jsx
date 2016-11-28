@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button, Popconfirm, Form, Input} from 'antd';
+import {Row, Col, Table, Button, Popconfirm, Form, Input, Select} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_PRODUCT} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -17,7 +17,9 @@ class ProductIndex extends Component {
             page: this.props.productReducer.page,
             product_name: this.props.productReducer.product_name,
             total: 0,
-            list: []
+            list: [],
+            categoryList: [],
+            brandList: []
         }
     }
 
@@ -162,15 +164,8 @@ class ProductIndex extends Component {
 
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
-                        <Col sm={8}>
-                            <FormItem {...{
-                                labelCol: {
-                                    span: 6
-                                },
-                                wrapperCol: {
-                                    span: 18
-                                }
-                            }} label="名称">
+                        <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="名称">
                                 {getFieldDecorator('product_name', {
                                     initialValue: ''
                                 })(
@@ -180,10 +175,45 @@ class ProductIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={8}>
-
+                        <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="分类">
+                                {getFieldDecorator('category_id', {
+                                    initialValue: ''
+                                })(
+                                    <Select style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请选择分类">
+                                        {
+                                            this.state.categoryList.map(function (item) {
+                                                return (
+                                                    <Option key={item.key} value={item.value}>{item.label}</Option>
+                                                )
+                                            })
+                                        }
+                                    </Select>
+                                )}
+                            </FormItem>
                         </Col>
-                        <Col sm={8} style={{
+                        <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="品牌">
+                                {getFieldDecorator('brand_id', {
+                                    initialValue: ''
+                                })(
+                                    <Select style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请选择品牌">
+                                        {
+                                            this.state.brandList.map(function (item) {
+                                                return (
+                                                    <Option key={item.key} value={item.value}>{item.label}</Option>
+                                                )
+                                            })
+                                        }
+                                    </Select>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col sm={3} style={{
                             textAlign: 'right'
                         }}>
                             <Button type="ghost" icon="search" size="default" className="button-reload"
