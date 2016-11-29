@@ -107,6 +107,13 @@ class MemberIndex extends Component {
             dataIndex: 'member_weibo_friend',
             key: 'member_weibo_friend'
         }, {
+            title: '会员状态',
+            dataIndex: 'member_status',
+            key: 'member_status',
+            render: (text, record, index) => (
+                record.member_status.toString()
+            )
+        }, {
             width: 150,
             title: '操作',
             dataIndex: '',
@@ -136,8 +143,6 @@ class MemberIndex extends Component {
                         <h2>会员列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
-                        <Button type="default" icon="reload" size="default"
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
                     </Col>
                 </Row>
 

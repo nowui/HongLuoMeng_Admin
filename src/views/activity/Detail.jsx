@@ -137,7 +137,7 @@ class ActivityDetail extends Component {
             <div>
                 <Row className={styles.contentTitle + ' ' + styles.contentTitleBottom}>
                     <Col span={12}>
-                        <h2>品牌表单</h2>
+                        <h2>活动表单</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>

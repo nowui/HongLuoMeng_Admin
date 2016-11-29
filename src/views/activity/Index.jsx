@@ -133,7 +133,7 @@ class ActivityIndex extends Component {
             <div>
                 <Row className={styles.contentTitle}>
                     <Col span={12}>
-                        <h2>品牌列表</h2>
+                        <h2>活动列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className={styles.buttonReload}

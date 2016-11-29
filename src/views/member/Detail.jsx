@@ -13,7 +13,9 @@ class MemberDetail extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            member: {}
+        }
     }
 
     componentDidMount() {
@@ -39,6 +41,10 @@ class MemberDetail extends Component {
                 member_id: self.props.params.member_id
             },
             success: function (data) {
+                self.setState({
+                    member: data
+                });
+
                 self.props.form.setFieldsValue(data);
             },
             complete: function () {
@@ -56,9 +62,26 @@ class MemberDetail extends Component {
     }
 
     onClickSubmit(event) {
-        event.preventDefault();
+        let self = this;
 
-        this.props.router.goBack();
+        self.props.setAction(SET_SPIN, {
+            isLoad: true
+        });
+
+        Helper.ajax({
+            url: '/member/status/update',
+            data: {
+                member_id: self.props.params.member_id
+            },
+            success: function (data) {
+                self.props.router.goBack();
+            },
+            complete: function () {
+                self.props.setAction(SET_SPIN, {
+                    isLoad: false
+                });
+            }
+        });
     }
 
     render() {
@@ -93,8 +116,13 @@ class MemberDetail extends Component {
                     <FormItem wrapperCol={{
                         offset: Helper.formItemLayout.labelCol.span
                     }}>
-                        <Button type="primary" icon="check-circle" size="default"
-                                onClick={this.onClickSubmit.bind(this)}>确定</Button>
+                        {
+                            this.state.member.member_status ?
+                                ''
+                                :
+                                <Button type="primary" icon="check-circle" size="default"
+                                        onClick={this.onClickSubmit.bind(this)}>确定</Button>
+                        }
                     </FormItem>
                 </Form>
             </div>

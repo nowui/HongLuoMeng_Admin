@@ -18,6 +18,7 @@ class BrandDetail extends Component {
         this.state = {
             categoryList: [],
             brand_logo: [],
+            brand_background: [],
             brand_agreement: ''
         }
     }
@@ -57,16 +58,22 @@ class BrandDetail extends Component {
                 }
 
                 let brand_logo = [];
+                let brand_background = [];
 
                 if (self.props.route.path.indexOf('/edit') > -1) {
                     if (data.brand_logo != '') {
                         brand_logo.push(data.brand_logo);
                     }
+
+                    if (data.brand_background != '') {
+                        brand_background.push(data.brand_background);
+                    }
                 }
 
                 self.setState({
                     categoryList: categoryList,
-                    brand_logo: brand_logo
+                    brand_logo: brand_logo,
+                    brand_background: brand_background
                 });
 
                 if (self.props.route.path.indexOf('/edit') > -1) {
@@ -112,6 +119,12 @@ class BrandDetail extends Component {
                 values.brand_logo = '';
             }
 
+            if (self.state.brand_background.length > 0) {
+                values.brand_background = self.state.brand_background[0];
+            } else {
+                values.brand_background = '';
+            }
+
             Helper.ajax({
                 url: '/brand/' + type,
                 data: values,
@@ -135,9 +148,15 @@ class BrandDetail extends Component {
         });
     }
 
-    onChangeImage(list) {
+    onChangeLogoImage(list) {
         this.setState({
             brand_logo: list
+        });
+    }
+
+    onChangeBackgroundImage(list) {
+        this.setState({
+            brand_background: list
         });
     }
 
@@ -197,7 +216,11 @@ class BrandDetail extends Component {
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="Logo">
                         <InputImage value={this.state.brand_logo} limit={1}
-                                    onChangeImage={this.onChangeImage.bind(this)}/>
+                                    onChangeImage={this.onChangeLogoImage.bind(this)}/>
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="背景">
+                        <InputImage value={this.state.brand_background} limit={1}
+                                    onChangeImage={this.onChangeBackgroundImage.bind(this)}/>
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="介绍">
                         {getFieldDecorator('brand_introduce')(

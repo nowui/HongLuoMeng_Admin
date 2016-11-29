@@ -124,7 +124,7 @@ class ProductIndex extends Component {
             dataIndex: 'product_is_hot',
             key: 'product_is_hot',
             render: (text, record, index) => (
-                record
+                record.product_is_hot.toString()
             )
         }, {
             title: '价格',
