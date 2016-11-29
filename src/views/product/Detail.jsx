@@ -21,7 +21,7 @@ class ProductDetail extends Component {
             memberLevelList: [],
             product_image: [],
             product_content: '',
-            categoryAttributeList: [],
+            categoryAttributeValueList: [],
             categoryAttributeSkuList: [],
             skuList: [],
             productSkuList: [],
@@ -72,12 +72,12 @@ class ProductDetail extends Component {
 
                 let categoryAttributeSkuList = [];
 
-                if (typeof (data.categoryAttributeList) == 'undefined') {
-                    data.categoryAttributeList = [];
+                if (typeof (data.categoryAttributeValueList) == 'undefined') {
+                    data.categoryAttributeValueList = [];
                 }
 
-                for (let i = 0; i < data.categoryAttributeList.length; i++) {
-                    let category_attribute = data.categoryAttributeList[i]
+                for (let i = 0; i < data.categoryAttributeValueList.length; i++) {
+                    let category_attribute = data.categoryAttributeValueList[i]
                     if (category_attribute.attribute_type == 'SKU') {
                         let item = [];
 
@@ -101,7 +101,7 @@ class ProductDetail extends Component {
                     brandList: brandList,
                     memberLevelList: data.memberLevelList,
                     product_image: data.product_image,
-                    categoryAttributeList: data.categoryAttributeList,
+                    categoryAttributeValueList: data.categoryAttributeValueList,
                     categoryAttributeSkuList: categoryAttributeSkuList,
                     productSkuList: data.productSkuList,
                     productSku: data.productSku
@@ -211,7 +211,7 @@ class ProductDetail extends Component {
 
                 self.setState({
                     categoryAttributeSkuList: categoryAttributeSkuList,
-                    categoryAttributeList: data
+                    categoryAttributeValueList: data
                 });
 
                 self.setCategoryAttributeFieldsValue();
@@ -225,11 +225,11 @@ class ProductDetail extends Component {
     }
 
     setCategoryAttributeFieldsValue = function () {
-        for (let i = 0; i < this.state.categoryAttributeList.length; i++) {
-            let categoryAttribute = this.state.categoryAttributeList[i];
+        for (let i = 0; i < this.state.categoryAttributeValueList.length; i++) {
+            let categoryAttribute = this.state.categoryAttributeValueList[i];
             let object = {};
 
-            object['categoryAttributeList.' + categoryAttribute.attribute_id] = categoryAttribute.attribute_value;
+            object['categoryAttributeValueList.' + categoryAttribute.attribute_id] = categoryAttribute.attribute_value;
 
             this.props.form.setFieldsValue(object);
         }
@@ -255,18 +255,18 @@ class ProductDetail extends Component {
             values.product_image = JSON.stringify(self.state.product_image);
             values.product_content = self.state.product_content;
 
-            let categoryAttributeList = [];
-            for (let i = 0; i < self.state.categoryAttributeList.length; i++) {
-                let categoryAttribute = self.state.categoryAttributeList[i];
+            let categoryAttributeValueList = [];
+            for (let i = 0; i < self.state.categoryAttributeValueList.length; i++) {
+                let categoryAttribute = self.state.categoryAttributeValueList[i];
                 if (categoryAttribute.attribute_type == 'NORMAL') {
-                    categoryAttributeList.push({
+                    categoryAttributeValueList.push({
                         attribute_id: categoryAttribute.attribute_id,
                         attribute_name: categoryAttribute.attribute_name,
-                        attribute_value: self.props.form.getFieldValue('categoryAttributeList.' + categoryAttribute.attribute_id)
+                        attribute_value: self.props.form.getFieldValue('categoryAttributeValueList.' + categoryAttribute.attribute_id)
                     });
                 }
             }
-            values.categoryAttributeList = categoryAttributeList;
+            values.categoryAttributeValueList = categoryAttributeValueList;
 
             let productSkuList = [];
             let memberLevelPriceList = [];
@@ -653,7 +653,7 @@ class ProductDetail extends Component {
                     <div className={styles.hr}></div>
                     <h3>SKU</h3>
                     {
-                        this.state.categoryAttributeList.map(function (item, index) {
+                        this.state.categoryAttributeValueList.map(function (item, index) {
                             const options = [];
                             const value = [];
 
@@ -835,12 +835,12 @@ class ProductDetail extends Component {
                     <div className={styles.hr}></div>
                     <h3>参数信息</h3>
                     {
-                        this.state.categoryAttributeList.map(function (item) {
+                        this.state.categoryAttributeValueList.map(function (item) {
                             return (
                                 item.attribute_type == 'NORMAL' ?
                                     <FormItem key={item.attribute_id} {...Helper.formItemLayout}
                                               label={item.attribute_name}>
-                                        {getFieldDecorator('categoryAttributeList.' + item.attribute_id)(
+                                        {getFieldDecorator('categoryAttributeValueList.' + item.attribute_id)(
                                             <Input type="text" style={{
                                                 width: Helper.inputWidth
                                             }} placeholder={'请输入' + item.attribute_name}/>

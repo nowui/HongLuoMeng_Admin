@@ -58,6 +58,8 @@ class ActivityDetail extends Component {
                 if (self.props.route.path.indexOf('/edit') > -1) {
                     self.props.form.setFieldsValue(data);
                 }
+
+                self.refs.htmlEditor.init(data.activity_content);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {

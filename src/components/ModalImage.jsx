@@ -8,7 +8,7 @@ import styles from './ModalImage.less';
 import 'cropperjs/dist/cropper.css';
 
 let activeMap = new Map();
-const limit = 40;
+const limit = 32;
 
 class ModalImage extends React.Component {
     constructor(props) {
@@ -230,9 +230,9 @@ class ModalImage extends React.Component {
                 <Spin size="large" spinning={this.state.isLoad}>
                     {
                         this.state.isUploadProduct ?
-                            <div style={{minHeight: 570}}>
+                            <div style={{minHeight: 470}}>
                                 <Cropper
-                                    style={{height: 500, width: '100%'}}
+                                    style={{height: 400, width: '100%'}}
                                     aspectRatio={1 / 1}
                                     preview=".img-preview"
                                     guides={false}
@@ -250,7 +250,7 @@ class ModalImage extends React.Component {
                             :
                             ''
                     }
-                    <div style={{display: this.state.isUploadProduct ? 'none' : 'block', minHeight: 545}}>
+                    <div style={{display: this.state.isUploadProduct ? 'none' : 'block', minHeight: 445}}>
                         <div style={{clear: 'both', display: 'table', content: ''}}>
                             {
                                 this.state.list.map(function (item) {

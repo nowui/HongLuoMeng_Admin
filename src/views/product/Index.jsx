@@ -120,6 +120,13 @@ class ProductIndex extends Component {
             dataIndex: 'product_name',
             key: 'product_name'
         }, {
+            title: '是否热卖',
+            dataIndex: 'product_is_hot',
+            key: 'product_is_hot',
+            render: (text, record, index) => (
+                record
+            )
+        }, {
             title: '价格',
             dataIndex: 'product_price',
             key: 'product_price'
