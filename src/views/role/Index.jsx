@@ -226,7 +226,7 @@ class RoleIndex extends Component {
                         }
                     </Col>
                 </Row>
-                <div className={styles.contentMain}>
+                <div>
                     <div className={styles.contentMainLeft}>
                         <Menu className={styles.siderMenu} mode="inline" openKeys={this.state.openKeys}
                               selectedKeys={this.state.selectedKeys} onOpenChange={this.onOpenChange.bind(this)}
@@ -240,8 +240,9 @@ class RoleIndex extends Component {
                             }
                         </Menu>
                     </div>
+
                     <div className={styles.contentMainRight}>
-                        <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                        <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 510 }}/>
                     </div>
                 </div>
             </div>

@@ -151,8 +151,8 @@ class BrandIndex extends Component {
 
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="品牌名称">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="品牌名称" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('brand_name', {
                                     initialValue: ''
                                 })(
@@ -162,8 +162,8 @@ class BrandIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="分类名称">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="分类名称" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('category_id', {
                                     initialValue: ''
                                 })(
@@ -181,9 +181,7 @@ class BrandIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={7}>
-                        </Col>
-                        <Col sm={3} style={{
+                        <Col sm={8} style={{
                             textAlign: 'right'
                         }}>
                             <Button type="ghost" icon="search" size="default" className="button-reload"
@@ -192,8 +190,8 @@ class BrandIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentSearchMain}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                <div className={styles.contentMainPaddingTop}>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 409 }}/>
                 </div>
             </div>
         )

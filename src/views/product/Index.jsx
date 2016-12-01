@@ -120,6 +120,7 @@ class ProductIndex extends Component {
             dataIndex: 'product_name',
             key: 'product_name'
         }, {
+            width: 150,
             title: '是否热卖',
             dataIndex: 'product_is_hot',
             key: 'product_is_hot',
@@ -127,10 +128,12 @@ class ProductIndex extends Component {
                 record.product_is_hot.toString()
             )
         }, {
+            width: 150,
             title: '价格',
             dataIndex: 'product_price',
             key: 'product_price'
         }, {
+            width: 150,
             title: '库存',
             dataIndex: 'product_stock',
             key: 'product_stock'
@@ -171,8 +174,8 @@ class ProductIndex extends Component {
 
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="名称">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="名称" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('product_name', {
                                     initialValue: ''
                                 })(
@@ -182,8 +185,8 @@ class ProductIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="分类">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="分类" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('category_id', {
                                     initialValue: ''
                                 })(
@@ -201,8 +204,8 @@ class ProductIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="品牌">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="品牌" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('brand_id', {
                                     initialValue: ''
                                 })(
@@ -220,7 +223,31 @@ class ProductIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={3} style={{
+                    </Row>
+                    <Row>
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="价格" className={styles.contentSearchFormItem}>
+                                {getFieldDecorator('product_price', {
+                                    initialValue: ''
+                                })(
+                                    <Input type="text" style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请输入价格"/>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="库存" className={styles.contentSearchFormItem}>
+                                {getFieldDecorator('product_stock', {
+                                    initialValue: ''
+                                })(
+                                    <Input type="text" style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请输入库存"/>
+                                )}
+                            </FormItem>
+                        </Col>
+                        <Col sm={8} className={styles.contentSearchFormItem} style={{
                             textAlign: 'right'
                         }}>
                             <Button type="ghost" icon="search" size="default" className="button-reload"
@@ -229,8 +256,8 @@ class ProductIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentSearchMain}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                <div className={styles.contentMainPaddingTop}>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 408 }}/>
                 </div>
             </div>
         )

@@ -148,8 +148,8 @@ class MemberIndex extends Component {
 
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
-                        <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="会员名称">
+                        <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="会员名称" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('member_name', {
                                     initialValue: ''
                                 })(
@@ -159,11 +159,9 @@ class MemberIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={7}>
+                        <Col sm={8}>
                         </Col>
-                        <Col sm={7}>
-                        </Col>
-                        <Col sm={3} style={{
+                        <Col sm={8} style={{
                             textAlign: 'right'
                         }}>
                             <Button type="ghost" icon="search" size="default" className="button-reload"
@@ -172,8 +170,8 @@ class MemberIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentSearchMain}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                <div className={styles.contentMainPaddingTop}>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{y: 409}}/>
                 </div>
             </div>
         )

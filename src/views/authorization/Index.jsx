@@ -110,8 +110,8 @@ class AuthorizationIndex extends Component {
                     </Col>
                 </Row>
 
-                <div className={styles.contentMain}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                <div>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 510 }}/>
                 </div>
             </div>
         )

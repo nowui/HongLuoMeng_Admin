@@ -212,7 +212,7 @@ class CategoryIndex extends Component {
                             )
                         })
                     }
-                        <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
+                    <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
                                 onConfirm={this.onClickDel.bind(this, record.id)}>
                             <a>删除</a>
                         </Popconfirm>
@@ -220,11 +220,17 @@ class CategoryIndex extends Component {
             )
         }];
 
+        const pagination = {
+            current: 1,
+            total: 1,
+            pageSize: Helper.limit
+        };
+
         return (
             <div>
                 <Row className={styles.contentTitle}>
                     <Col span={12}>
-                        <h1>{this.props.category_name}列表</h1>
+                        <h2>{this.props.category_name}列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className={styles.buttonReload}
@@ -235,8 +241,8 @@ class CategoryIndex extends Component {
                 </Row>
 
                 <Table columns={columns} dataSource={this.state.category.children}
-                       expandedRowKeys={this.state.expandedRowKeys} pagination={false}
-                       onExpand={this.onRowClick.bind(this)} className={styles.contentMain}/>
+                       expandedRowKeys={this.state.expandedRowKeys}
+                       onExpand={this.onRowClick.bind(this)} pagination={pagination} scroll={{y: 510}}/>
             </div>
         )
     }
