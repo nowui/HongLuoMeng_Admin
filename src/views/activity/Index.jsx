@@ -107,7 +107,7 @@ class ActivityIndex extends Component {
             dataIndex: 'activity_name',
             key: 'activity_name'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

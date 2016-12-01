@@ -114,7 +114,7 @@ class AdminIndex extends Component {
             dataIndex: 'admin_name',
             key: 'admin_name'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

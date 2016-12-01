@@ -901,7 +901,7 @@ class Index extends Component {
                     </Col>
                 </Row>
 
-                <div className={styles.contentMain}>
+                <div >
                     <Row className={styles.contentBoxes}>
                         <Col span={24} className={styles.contentBoxesTitle}>
                             <div><h3>数据统计</h3></div>

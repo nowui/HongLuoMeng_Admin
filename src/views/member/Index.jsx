@@ -103,10 +103,12 @@ class MemberIndex extends Component {
             dataIndex: 'member_name',
             key: 'member_name'
         }, {
+            width: 100,
             title: '微博粉丝数',
             dataIndex: 'member_weibo_fans',
             key: 'member_weibo_fans'
         }, {
+            width: 100,
             title: '会员审核状态',
             dataIndex: 'member_status',
             key: 'member_status',
@@ -114,7 +116,7 @@ class MemberIndex extends Component {
                 record.member_status.toString()
             )
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

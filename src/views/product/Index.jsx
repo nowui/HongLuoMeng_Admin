@@ -120,7 +120,7 @@ class ProductIndex extends Component {
             dataIndex: 'product_name',
             key: 'product_name'
         }, {
-            width: 150,
+            width: 100,
             title: '是否热卖',
             dataIndex: 'product_is_hot',
             key: 'product_is_hot',
@@ -128,17 +128,17 @@ class ProductIndex extends Component {
                 record.product_is_hot.toString()
             )
         }, {
-            width: 150,
+            width: 100,
             title: '价格',
             dataIndex: 'product_price',
             key: 'product_price'
         }, {
-            width: 150,
+            width: 100,
             title: '库存',
             dataIndex: 'product_stock',
             key: 'product_stock'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

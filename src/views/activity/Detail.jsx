@@ -156,7 +156,7 @@ class ActivityDetail extends Component {
                             }} placeholder="请输入名称"/>
                         )}
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="Url">
+                    <FormItem {...Helper.formItemLayout} label="地址">
                         {getFieldDecorator('activity_url', {
                             initialValue: ''
                         })(
@@ -165,7 +165,7 @@ class ActivityDetail extends Component {
                             }} placeholder="请输入Url"/>
                         )}
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="Logo">
+                    <FormItem {...Helper.formItemLayout} label="图片">
                         <InputImage value={this.state.activity_image} limit={1}
                                     onChangeImage={this.onChangeImage.bind(this)}/>
                     </FormItem>
@@ -183,7 +183,7 @@ class ActivityDetail extends Component {
                             }} placeholder="请输入排序" min={0} max={99}/>
                         )}
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="活动内容">
+                    <FormItem {...Helper.formItemLayout} label="内容">
                         <HtmlEditor ref="htmlEditor" onChangeContent={this.onChangeContent.bind(this)}/>
                     </FormItem>
                     <FormItem wrapperCol={{

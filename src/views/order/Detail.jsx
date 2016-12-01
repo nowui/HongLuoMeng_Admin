@@ -83,6 +83,62 @@ class OrderDetail extends Component {
                             }} placeholder="请输入订单号"/>
                         )}
                     </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="订单价格">
+                        {getFieldDecorator('order_pay_price')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入订单价格"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货人姓名">
+                        {getFieldDecorator('order_delivery_name')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货人姓名"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货人电话">
+                        {getFieldDecorator('order_delivery_phone')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货人电话"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货省份">
+                        {getFieldDecorator('order_delivery_province')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货省份"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货城市">
+                        {getFieldDecorator('order_delivery_city')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货城市"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货地区">
+                        {getFieldDecorator('order_delivery_area')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货地区"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货详细地址">
+                        {getFieldDecorator('order_delivery_address')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货详细地址"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="收货邮编">
+                        {getFieldDecorator('order_delivery_zip')(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入收货邮编"/>
+                        )}
+                    </FormItem>
                     <FormItem wrapperCol={{
                         offset: Helper.formItemLayout.labelCol.span
                     }}>

@@ -77,23 +77,27 @@ class LogIndex extends Component {
             dataIndex: 'log_url',
             key: 'log_url'
         }, {
+            width: 150,
             title: '请求时间',
             dataIndex: 'log_create_time',
             key: 'log_create_time'
         }, {
+            width: 100,
             title: '平台',
             dataIndex: 'log_platform',
             key: 'log_platform'
         }, {
+            width: 100,
             title: '状态',
             dataIndex: 'log_code',
             key: 'log_code'
         }, {
+            width: 100,
             title: '耗时(毫秒)',
             dataIndex: 'log_run_time',
             key: 'log_run_time'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

@@ -101,19 +101,22 @@ class BrandApplyIndex extends Component {
             dataIndex: 'member_real_name',
             key: 'member_real_name'
         }, {
+            width: 150,
             title: '品牌名称',
             dataIndex: 'brand_name',
             key: 'brand_name'
         }, {
+            width: 100,
             title: '申请状态',
             dataIndex: 'brand_apply_review_status',
             key: 'brand_apply_review_status'
         }, {
+            width: 150,
             title: '申请时间',
             dataIndex: 'system_create_time',
             key: 'system_create_time'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

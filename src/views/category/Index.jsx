@@ -179,6 +179,7 @@ class CategoryIndex extends Component {
             dataIndex: 'name',
             key: 'name'
         }, {
+            width: 100,
             title: '排序',
             dataIndex: 'sort',
             key: 'sort'
@@ -187,36 +188,7 @@ class CategoryIndex extends Component {
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
-                <span>
-          {
-              this.props.category_key == '' ?
-                  ''
-                  :
-                  <a onClick={this.onClickAdd.bind(this, record.id)}>新增</a>
-          }
-                    {
-                        this.props.category_key == '' ?
-                            ''
-                            :
-                            <span className="ant-divider"></span>
-                    }
-                    <a onClick={this.onClickEdit.bind(this, record.id)}>修改</a>
-                    <span className="ant-divider"/>
-                    {
-                        this.props.operation.map(function (item, index) {
-                            return (
-                                <span key={item.key}>
-                                  <Link to={item.url + '/' + record.id}>{item.name}</Link>
-                                  <span className="ant-divider"/>
-                                </span>
-                            )
-                        })
-                    }
-                    <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
-                                onConfirm={this.onClickDel.bind(this, record.id)}>
-                            <a>删除</a>
-                        </Popconfirm>
-                    </span>
+                <span/>
             )
         }];
 

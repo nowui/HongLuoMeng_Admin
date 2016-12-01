@@ -182,11 +182,12 @@ class RoleIndex extends Component {
             dataIndex: 'role_name',
             key: 'role_name'
         }, {
+            width: 100,
             title: '排序',
             dataIndex: 'role_sort',
             key: 'role_sort'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

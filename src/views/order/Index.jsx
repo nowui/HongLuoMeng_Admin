@@ -80,19 +80,22 @@ class OrderIndex extends Component {
             dataIndex: 'order_no',
             key: 'order_no'
         }, {
+            width: 100,
             title: '订单价格',
             dataIndex: 'order_pay_price',
             key: 'order_pay_price'
         }, {
+            width: 100,
             title: '商品数量',
             dataIndex: 'order_product_pay_amount',
             key: 'order_product_pay_amount'
         }, {
+            width: 100,
             title: '状态',
             dataIndex: 'order_status',
             key: 'order_status'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

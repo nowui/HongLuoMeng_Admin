@@ -181,11 +181,12 @@ class OperationIndex extends Component {
             dataIndex: 'operation_name',
             key: 'operation_name'
         }, {
+            width: 100,
             title: '排序',
             dataIndex: 'operation_sort',
             key: 'operation_sort'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

@@ -14,7 +14,9 @@ class MemberDetail extends Component {
         super(props);
 
         this.state = {
-            member: {}
+            member: {
+                member_avatar: ''
+            }
         }
     }
 
@@ -107,11 +109,14 @@ class MemberDetail extends Component {
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="头像">
-                        {getFieldDecorator('member_avatar')(
-                            <Input type="text" disabled={true} style={{
-                                width: Helper.inputWidth
-                            }} placeholder="请输入头像"/>
-                        )}
+                        {
+                            typeof(this.state.member.member_avatar) == 'undefined' ?
+                                ''
+                                :
+                                <img src={this.state.member.member_avatar.large} style={{
+                                    width: Helper.inputWidth
+                                }}/>
+                        }
                     </FormItem>
                     <FormItem wrapperCol={{
                         offset: Helper.formItemLayout.labelCol.span

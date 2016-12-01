@@ -117,11 +117,12 @@ class CategoryAttributeIndex extends Component {
             dataIndex: 'attribute_name',
             key: 'attribute_name'
         }, {
+            width: 100,
             title: '类型',
             dataIndex: 'attribute_type',
             key: 'attribute_type'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
@@ -159,8 +160,8 @@ class CategoryAttributeIndex extends Component {
                     </Col>
                 </Row>
 
-                <div className={styles.contentMain}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                <div>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 510 }}/>
                 </div>
             </div>
         )

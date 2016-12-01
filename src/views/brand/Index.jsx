@@ -111,11 +111,12 @@ class BrandIndex extends Component {
             dataIndex: 'brand_name',
             key: 'brand_name'
         }, {
+            width: 100,
             title: '分类名称',
             dataIndex: 'category_name',
             key: 'category_name'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (

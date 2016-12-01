@@ -106,11 +106,12 @@ class AttributeIndex extends Component {
             dataIndex: 'attribute_name',
             key: 'attribute_name'
         }, {
+            width: 100,
             title: '类型',
             dataIndex: 'attribute_type',
             key: 'attribute_type'
         }, {
-            width: 150,
+            width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
