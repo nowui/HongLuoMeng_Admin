@@ -77,6 +77,10 @@ class AuthorizationIndex extends Component {
             dataIndex: 'authorization_create_time',
             key: 'authorization_create_time'
         }, {
+            title: '过期时间',
+            dataIndex: 'authorization_expire_time',
+            key: 'authorization_expire_time'
+        }, {
             width: 150,
             title: '操作',
             dataIndex: '',

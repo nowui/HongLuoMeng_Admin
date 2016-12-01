@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button, Popconfirm, Form, Input} from 'antd';
+import {Row, Col, Table, Button, Popconfirm, Form, Input, Select} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_BRAND} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -16,6 +16,7 @@ class BrandIndex extends Component {
         this.state = {
             page: this.props.brandReducer.page,
             total: 0,
+            categoryList: [],
             list: []
         }
     }
@@ -106,9 +107,13 @@ class BrandIndex extends Component {
         const {getFieldDecorator} = this.props.form;
 
         const columns = [{
-            title: '名称',
+            title: '品牌名称',
             dataIndex: 'brand_name',
             key: 'brand_name'
+        }, {
+            title: '分类名称',
+            dataIndex: 'category_name',
+            key: 'category_name'
         }, {
             width: 150,
             title: '操作',
@@ -147,7 +152,7 @@ class BrandIndex extends Component {
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
                         <Col sm={7}>
-                            <FormItem {...Helper.formItemSearchLayout} label="名称">
+                            <FormItem {...Helper.formItemSearchLayout} label="品牌名称">
                                 {getFieldDecorator('brand_name', {
                                     initialValue: ''
                                 })(
@@ -158,6 +163,23 @@ class BrandIndex extends Component {
                             </FormItem>
                         </Col>
                         <Col sm={7}>
+                            <FormItem {...Helper.formItemSearchLayout} label="分类名称">
+                                {getFieldDecorator('category_id', {
+                                    initialValue: ''
+                                })(
+                                    <Select style={{
+                                        width: Helper.inputSearchWidth
+                                    }} placeholder="请选择分类">
+                                        {
+                                            this.state.categoryList.map(function (item) {
+                                                return (
+                                                    <Option key={item.key} value={item.value}>{item.label}</Option>
+                                                )
+                                            })
+                                        }
+                                    </Select>
+                                )}
+                            </FormItem>
                         </Col>
                         <Col sm={7}>
                         </Col>

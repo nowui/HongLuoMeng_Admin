@@ -42,12 +42,14 @@ class Login extends Component {
                 success: function (data) {
                     Helper.login(data.token);
 
+                    Helper.notificationSuccess("登录成功");
+
                     setTimeout(function () {
                         self.props.router.push({
                             pathname: '/index',
                             query: {}
                         });
-                    }, 1000);
+                    }, 100);
                 },
                 complete: function () {
                     self.setState({

@@ -89,8 +89,8 @@ class OrderIndex extends Component {
             key: 'order_product_pay_amount'
         }, {
             title: '状态',
-            dataIndex: 'order_flow_status',
-            key: 'order_flow_status'
+            dataIndex: 'order_status',
+            key: 'order_status'
         }, {
             width: 150,
             title: '操作',

@@ -121,7 +121,7 @@ class MemberDetail extends Component {
                                 ''
                                 :
                                 <Button type="primary" icon="check-circle" size="default"
-                                        onClick={this.onClickSubmit.bind(this)}>确定</Button>
+                                        onClick={this.onClickSubmit.bind(this)}>通过该会员的申请</Button>
                         }
                     </FormItem>
                 </Form>

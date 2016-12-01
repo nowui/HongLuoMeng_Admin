@@ -98,7 +98,7 @@ class AdminIndex extends Component {
                 admin_id: admin_id
             },
             success: function (data) {
-                self.load(page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {

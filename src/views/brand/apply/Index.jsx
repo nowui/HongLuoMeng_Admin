@@ -78,7 +78,7 @@ class BrandApplyIndex extends Component {
                 user_id: user_id
             },
             success: function (data) {
-                self.load(page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
@@ -110,8 +110,8 @@ class BrandApplyIndex extends Component {
             key: 'brand_apply_review_status'
         }, {
             title: '申请时间',
-            dataIndex: 'brand_apply_create_time',
-            key: 'brand_apply_create_time'
+            dataIndex: 'system_create_time',
+            key: 'system_create_time'
         }, {
             width: 150,
             title: '操作',

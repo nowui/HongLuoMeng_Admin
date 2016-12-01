@@ -901,87 +901,90 @@ class Index extends Component {
                     </Col>
                 </Row>
 
-                <Row className={styles.contentBoxes}>
-                    <Col span={24} className={styles.contentBoxesTitle}>
-                        <div><h3>数据统计</h3></div>
-                    </Col>
-                    <Col span={6} className={styles.contentBoxesCol}>
-                        <div className={styles.indexCircle} style={{
-                            borderColor: '#2db7f5',
-                            backgroundColor: '#2db7f5'
-                        }}>
-                            <Icon type="notification" className={styles.indexIcon}/>
-                        </div>
-                        <div className={styles.indexText}>待发货订单</div>
-                        <div className={styles.indexNumber}>000</div>
-                    </Col>
-                    <Col span={6} className={styles.contentBoxesCol}>
-                        <div className={styles.indexCircle} style={{
-                            borderColor: '#52d2e5',
-                            backgroundColor: '#52d2e5'
-                        }}>
-                            <Icon type="shopping-cart" className={styles.indexIcon}/>
-                        </div>
-                        <div className={styles.indexText}>昨日订单</div>
-                        <div className={styles.indexNumber}>000</div>
-                    </Col>
-                    <Col span={6} className={styles.contentBoxesCol}>
-                        <div className={styles.indexCircle} style={{
-                            borderColor: '#fd8c4a',
-                            backgroundColor: '#fd8c4a'
-                        }}>
-                            <Icon type="pay-circle-o" className={styles.indexIcon}/>
-                        </div>
-                        <div className={styles.indexText}>昨日交易额</div>
-                        <div className={styles.indexNumber}>000000.00</div>
-                    </Col>
-                    <Col span={6} className={styles.contentBoxesCol}>
-                        <div className={styles.indexCircle} style={{
-                            borderColor: '#ab97d2',
-                            backgroundColor: '#ab97d2'
-                        }}>
-                            <Icon type="user" className={styles.indexIcon}/>
-                        </div>
-                        <div className={styles.indexText}>昨日用户注册数</div>
-                        <div className={styles.indexNumber}>000</div>
-                    </Col>
-                </Row>
+                <div className={styles.contentMain}>
+                    <Row className={styles.contentBoxes}>
+                        <Col span={24} className={styles.contentBoxesTitle}>
+                            <div><h3>数据统计</h3></div>
+                        </Col>
+                        <Col span={6} className={styles.contentBoxesCol}>
+                            <div className={styles.indexCircle} style={{
+                                borderColor: '#2db7f5',
+                                backgroundColor: '#2db7f5'
+                            }}>
+                                <Icon type="notification" className={styles.indexIcon}/>
+                            </div>
+                            <div className={styles.indexText}>待发货订单</div>
+                            <div className={styles.indexNumber}>000</div>
+                        </Col>
+                        <Col span={6} className={styles.contentBoxesCol}>
+                            <div className={styles.indexCircle} style={{
+                                borderColor: '#52d2e5',
+                                backgroundColor: '#52d2e5'
+                            }}>
+                                <Icon type="shopping-cart" className={styles.indexIcon}/>
+                            </div>
+                            <div className={styles.indexText}>昨日订单</div>
+                            <div className={styles.indexNumber}>000</div>
+                        </Col>
+                        <Col span={6} className={styles.contentBoxesCol}>
+                            <div className={styles.indexCircle} style={{
+                                borderColor: '#fd8c4a',
+                                backgroundColor: '#fd8c4a'
+                            }}>
+                                <Icon type="pay-circle-o" className={styles.indexIcon}/>
+                            </div>
+                            <div className={styles.indexText}>昨日交易额</div>
+                            <div className={styles.indexNumber}>000000.00</div>
+                        </Col>
+                        <Col span={6} className={styles.contentBoxesCol}>
+                            <div className={styles.indexCircle} style={{
+                                borderColor: '#ab97d2',
+                                backgroundColor: '#ab97d2'
+                            }}>
+                                <Icon type="user" className={styles.indexIcon}/>
+                            </div>
+                            <div className={styles.indexText}>昨日用户注册数</div>
+                            <div className={styles.indexNumber}>000</div>
+                        </Col>
+                    </Row>
 
-                <Row style={{
-                    marginTop: '18px'
-                }}>
-                    <Col span={16}>
-                        <Row className={styles.contentBoxes}>
-                            <Col span={24} className={styles.contentBoxesCol}>
-                                <div><h3>流量走势</h3></div>
-                            </Col>
-                            <Col span={24} className={styles.contentBoxesCol} style={{
-                                paddingTop: '0px'
+                    <Row style={{
+                        marginTop: '18px',
+                        marginBottom: '18px'
+                    }}>
+                        <Col span={16}>
+                            <Row className={styles.contentBoxes}>
+                                <Col span={24} className={styles.contentBoxesCol}>
+                                    <div><h3>流量走势</h3></div>
+                                </Col>
+                                <Col span={24} className={styles.contentBoxesCol} style={{
+                                    paddingTop: '0px'
+                                }}>
+                                    <Line data={data1} forceFit={true} width={300} height={300} plotCfg={{
+                                        margin: [10, 65, 30, 30]
+                                    }} ref="myChart1">
+                                    </Line>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={8}>
+                            <Row className={styles.contentBoxes} style={{
+                                marginLeft: '18px'
                             }}>
-                                <Line data={data1} forceFit={true} width={300} height={300} plotCfg={{
-                                    margin: [10, 65, 30, 30]
-                                }} ref="myChart1">
-                                </Line>
-                            </Col>
-                        </Row>
-                    </Col>
-                    <Col span={8}>
-                        <Row className={styles.contentBoxes} style={{
-                            marginLeft: '18px'
-                        }}>
-                            <Col span={24} className={styles.contentBoxesCol}>
-                                <div><h3>区域分布</h3></div>
-                            </Col>
-                            <Col span={24} className={styles.contentBoxesCol} style={{
-                                paddingTop: '0px'
-                            }}>
-                                <Pie data={data2} forceFit={true} width={300} height={300} plotCfg={{
-                                    margin: [10, 60, 10, 10]
-                                }} ref="myChart2"/>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
+                                <Col span={24} className={styles.contentBoxesCol}>
+                                    <div><h3>区域分布</h3></div>
+                                </Col>
+                                <Col span={24} className={styles.contentBoxesCol} style={{
+                                    paddingTop: '0px'
+                                }}>
+                                    <Pie data={data2} forceFit={true} width={300} height={300} plotCfg={{
+                                        margin: [10, 60, 10, 10]
+                                    }} ref="myChart2"/>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         )
     }

@@ -104,10 +104,10 @@ class MemberIndex extends Component {
             key: 'member_name'
         }, {
             title: '微博粉丝数',
-            dataIndex: 'member_weibo_friend',
-            key: 'member_weibo_friend'
+            dataIndex: 'member_weibo_fans',
+            key: 'member_weibo_fans'
         }, {
-            title: '会员状态',
+            title: '会员审核状态',
             dataIndex: 'member_status',
             key: 'member_status',
             render: (text, record, index) => (

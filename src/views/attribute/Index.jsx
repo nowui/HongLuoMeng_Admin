@@ -90,7 +90,7 @@ class AttributeIndex extends Component {
                 attribute_id: attribute_id
             },
             success: function (data) {
-                self.load(page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {

@@ -91,7 +91,7 @@ class MemberLevelIndex extends Component {
                 member_level_id: member_level_id
             },
             success: function () {
-                self.load(page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
