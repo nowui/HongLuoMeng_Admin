@@ -104,7 +104,7 @@ class Main extends Component {
         );
 
         return (
-            <Spin size="large" spinning={this.props.spinReducer.isLoad}>
+            <Spin size="large" tip="Loading.." spinning={this.props.spinReducer.isLoad}>
                 <div className={styles.header}>
                     <Row>
                         <Col span={12}>

@@ -119,14 +119,16 @@ class OrderIndex extends Component {
                         <h2>订单列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
-
+                        <Button type="default" icon="search" size="default"
+                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
                     </Col>
                 </Row>
 
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="订单号" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="订单号"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('order_no', {
                                     initialValue: ''
                                 })(
@@ -141,14 +143,13 @@ class OrderIndex extends Component {
                         <Col sm={8} style={{
                             textAlign: 'right'
                         }}>
-                            <Button type="ghost" icon="search" size="default" className="button-reload"
-                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+
                         </Col>
                     </Row>
                 </Form>
 
                 <div className={styles.contentMainPaddingTop}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 409 }}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>
         )

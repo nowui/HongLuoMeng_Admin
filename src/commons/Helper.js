@@ -2,8 +2,8 @@ import reqwest from 'reqwest';
 import {message} from 'antd';
 
 const Helper = {
-    host: 'http://localhost:8080',
-    //host: 'http://api.hongluomeng.nowui.com',
+    //host: 'http://localhost:8080',
+    host: 'http://api.hongluomeng.nowui.com',
     inputWidth: 390,
     inputSearchWidth: 200,
     formItemLayout: {
@@ -24,7 +24,7 @@ const Helper = {
     },
     platform: 'ADMIN',
     version: '1.0.0',
-    limit: 25,
+    limit: 8,
     duration: 1.5,
     message: '提示',
     description: '操作成功',

@@ -167,6 +167,8 @@ class ProductIndex extends Component {
                         <h2>商品列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
+                        <Button type="default" icon="search" size="default" className={styles.buttonReload}
+                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>
@@ -175,7 +177,8 @@ class ProductIndex extends Component {
                 <Form horizontal className={styles.contentSearch}>
                     <Row>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="名称" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="名称"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('product_name', {
                                     initialValue: ''
                                 })(
@@ -186,7 +189,8 @@ class ProductIndex extends Component {
                             </FormItem>
                         </Col>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="分类" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="分类"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('category_id', {
                                     initialValue: ''
                                 })(
@@ -205,7 +209,8 @@ class ProductIndex extends Component {
                             </FormItem>
                         </Col>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="品牌" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="品牌"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('brand_id', {
                                     initialValue: ''
                                 })(
@@ -226,7 +231,8 @@ class ProductIndex extends Component {
                     </Row>
                     <Row>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="价格" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="价格"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('product_price', {
                                     initialValue: ''
                                 })(
@@ -237,7 +243,8 @@ class ProductIndex extends Component {
                             </FormItem>
                         </Col>
                         <Col sm={8}>
-                            <FormItem {...Helper.formItemSearchLayout} label="库存" className={styles.contentSearchFormItem}>
+                            <FormItem {...Helper.formItemSearchLayout} label="库存"
+                                      className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('product_stock', {
                                     initialValue: ''
                                 })(
@@ -247,17 +254,13 @@ class ProductIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={8} className={styles.contentSearchFormItem} style={{
-                            textAlign: 'right'
-                        }}>
-                            <Button type="ghost" icon="search" size="default" className="button-reload"
-                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                        <Col sm={8} className={styles.contentSearchFormItem}>
                         </Col>
                     </Row>
                 </Form>
 
                 <div className={styles.contentMainPaddingTop}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 408 }}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>
         )

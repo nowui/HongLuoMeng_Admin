@@ -173,7 +173,7 @@ class MemberIndex extends Component {
                 </Form>
 
                 <div className={styles.contentMainPaddingTop}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{y: 409}}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
                 </div>
             </div>
         )

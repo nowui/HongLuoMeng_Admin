@@ -145,6 +145,8 @@ class BrandIndex extends Component {
                         <h2>品牌列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
+                        <Button type="default" icon="search" size="default" className={styles.buttonReload}
+                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>
@@ -182,17 +184,14 @@ class BrandIndex extends Component {
                                 )}
                             </FormItem>
                         </Col>
-                        <Col sm={8} style={{
-                            textAlign: 'right'
-                        }}>
-                            <Button type="ghost" icon="search" size="default" className="button-reload"
-                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                        <Col sm={8}>
+
                         </Col>
                     </Row>
                 </Form>
 
                 <div className={styles.contentMainPaddingTop}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 409 }}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>
         )

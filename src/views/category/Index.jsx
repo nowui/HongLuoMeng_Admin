@@ -179,12 +179,7 @@ class CategoryIndex extends Component {
             dataIndex: 'name',
             key: 'name'
         }, {
-            width: 100,
-            title: '排序',
-            dataIndex: 'sort',
-            key: 'sort'
-        }, {
-            width: 150,
+            width: 180,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
@@ -243,7 +238,7 @@ class CategoryIndex extends Component {
 
                 <Table columns={columns} dataSource={this.state.category.children}
                        expandedRowKeys={this.state.expandedRowKeys}
-                       onExpand={this.onRowClick.bind(this)} pagination={pagination} scroll={{y: 510}}/>
+                       onExpand={this.onRowClick.bind(this)} pagination={pagination} bordered/>
             </div>
         )
     }

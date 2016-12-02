@@ -127,7 +127,7 @@ class LogIndex extends Component {
                 </Row>
 
                 <div>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 510 }}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
                 </div>
             </div>
         )

@@ -187,7 +187,7 @@ class RoleIndex extends Component {
             dataIndex: 'role_sort',
             key: 'role_sort'
         }, {
-            width: 100,
+            width: 150,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
@@ -243,7 +243,7 @@ class RoleIndex extends Component {
                     </div>
 
                     <div className={styles.contentMainRight}>
-                        <Table columns={columns} dataSource={this.state.list} pagination={pagination} scroll={{ y: 510 }}/>
+                        <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                     </div>
                 </div>
             </div>

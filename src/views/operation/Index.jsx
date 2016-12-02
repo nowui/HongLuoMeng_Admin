@@ -248,7 +248,7 @@ class OperationIndex extends Component {
                     </div>
 
                     <div className={styles.contentMainRight}>
-                        <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                        <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                     </div>
                 </div>
             </div>
