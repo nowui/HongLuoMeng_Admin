@@ -155,7 +155,7 @@ class BrandApplyIndex extends Component {
                 </Row>
 
                 <div>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>
         )
