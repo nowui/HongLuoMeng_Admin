@@ -46,6 +46,9 @@ class BrandDetail extends Component {
             },
             success: function (data) {
                 self.props.form.setFieldsValue(data);
+                self.props.form.setFieldsValue({
+                    brand_name: data.brand.brand_name
+                });
 
                 self.setState({
                     member_identity_card_front_image: data.member_identity_card_front_image,

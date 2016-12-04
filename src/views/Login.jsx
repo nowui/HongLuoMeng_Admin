@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Spin, Form, Input, Button} from 'antd';
+import {Spin, Form, Input, Button, Icon} from 'antd';
 
 import Helper from '../commons/Helper';
 
@@ -68,31 +68,31 @@ class Login extends Component {
             <Spin size="large" spinning={this.state.isLoad} tip="正在加载中...">
                 <div className={styles.login}>
                     <Form horizontal>
-                        <FormItem {...Helper.formItemLayout} label="帐号">
+                        <FormItem >
                             {getFieldDecorator('user_account', {
                                 rules: [{
                                     required: true,
                                     message: Helper.required
                                 }]
                             })(
-                                <Input type="text" placeholder="请输入帐号"/>
+                                <Input addonBefore={<Icon type="user" />} type="text" placeholder="请输入帐号"/>
                             )}
                         </FormItem>
-                        <FormItem {...Helper.formItemLayout} label="密码">
+                        <FormItem>
                             {getFieldDecorator('user_password', {
                                 rules: [{
                                     required: true,
                                     message: Helper.required
                                 }]
                             })(
-                                <Input type="password" placeholder="请输入密码"/>
+                                <Input addonBefore={<Icon type="lock" />} type="password" placeholder="请输入密码"/>
                             )}
                         </FormItem>
-                        <FormItem wrapperCol={{
-                            offset: Helper.formItemLayout.labelCol.span
-                        }}>
-                            <Button type="primary" icon="check-circle" size="default"
-                                    onClick={this.onClickSubmit.bind(this)}>确定</Button>
+                        <FormItem>
+                            <Button type="primary" size="default" style={{
+                                width: '100%'
+                            }}
+                                    onClick={this.onClickSubmit.bind(this)}>登录</Button>
                         </FormItem>
                     </Form>
                 </div>
