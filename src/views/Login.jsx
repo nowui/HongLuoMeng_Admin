@@ -42,7 +42,7 @@ class Login extends Component {
                 success: function (data) {
                     Helper.login(data.token);
 
-                    Helper.notificationSuccess("登录成功");
+                    Helper.notificationSuccessMessage("登录成功");
 
                     setTimeout(function () {
                         self.props.router.push({
@@ -75,7 +75,8 @@ class Login extends Component {
                                     message: Helper.required
                                 }]
                             })(
-                                <Input addonBefore={<Icon type="user" />} type="text" placeholder="请输入帐号"/>
+                                <Input addonBefore={<Icon type="user"/>} type="text" placeholder="请输入帐号"
+                                       onPressEnter={this.onClickSubmit.bind(this)}/>
                             )}
                         </FormItem>
                         <FormItem>
@@ -85,11 +86,12 @@ class Login extends Component {
                                     message: Helper.required
                                 }]
                             })(
-                                <Input addonBefore={<Icon type="lock" />} type="password" placeholder="请输入密码"/>
+                                <Input addonBefore={<Icon type="lock"/>} type="password" placeholder="请输入密码"
+                                       onPressEnter={this.onClickSubmit.bind(this)}/>
                             )}
                         </FormItem>
                         <FormItem>
-                            <Button type="primary" size="default" style={{
+                            <Button type="primary" size="large" style={{
                                 width: '100%'
                             }}
                                     onClick={this.onClickSubmit.bind(this)}>登录</Button>

@@ -121,11 +121,14 @@ class ProductIndex extends Component {
             key: 'product_name'
         }, {
             width: 100,
-            title: '是否热卖',
+            title: '标记',
             dataIndex: 'product_is_hot',
             key: 'product_is_hot',
             render: (text, record, index) => (
-                record.product_is_hot.toString()
+                record.product_is_hot ?
+                    '精选'
+                    :
+                    ''
             )
         }, {
             width: 100,
@@ -259,7 +262,7 @@ class ProductIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentMainPaddingTop}>
+                <div className={styles.contentSearchMain + ' ' + styles.contentSearchMainPaddingTop}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>

@@ -36,6 +36,9 @@ const Helper = {
     notificationSuccess: function () {
         message.success(this.description, this.duration);
     },
+    notificationSuccessMessage: function (message) {
+        message.success(message, this.duration);
+    },
     ajax: function (config) {
         reqwest({
             url: this.host + config.url,

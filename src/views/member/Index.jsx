@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button, Popconfirm, Form, Input} from 'antd';
+import {Row, Col, Table, Button, Popconfirm, Form, Input, Tag} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_MEMBER} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -113,7 +113,12 @@ class MemberIndex extends Component {
             dataIndex: 'member_status',
             key: 'member_status',
             render: (text, record, index) => (
-                record.member_status.toString()
+                record.member_status ?
+                    '通过'
+                    :
+                    <span style={{
+                        color: '#f50'
+                    }}>待审核</span>
             )
         }, {
             width: 100,
@@ -173,7 +178,7 @@ class MemberIndex extends Component {
                 </Form>
 
                 <div className={styles.contentMainPaddingTop}>
-                    <Table columns={columns} dataSource={this.state.list} pagination={pagination}/>
+                    <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>
         )

@@ -534,7 +534,7 @@ class ProductDetail extends Component {
                         })(
                             <InputNumber style={{
                                 width: Helper.inputWidth
-                            }} placeholder="请输入价格" min={0.00} max={9999.00} step={0.01}/>
+                            }} placeholder="请输入价格" min={0.00} max={9999.00} step={1}/>
                         )}
                     </FormItem>
                     {
@@ -565,7 +565,7 @@ class ProductDetail extends Component {
                                         <InputNumber style={{
                                             width: Helper.inputWidth
                                         }} placeholder={"请输入" + item.member_level_name + '价格'} min={0.00} max={9999.00}
-                                                     step={0.01}/>
+                                                     step={1}/>
                                     )}
                                 </FormItem>
                             )
@@ -625,7 +625,7 @@ class ProductDetail extends Component {
                                     valuePropName: 'checked',
                                     initialValue: false
                                 })(
-                                    <Checkbox>热卖</Checkbox>
+                                    <Checkbox>精选</Checkbox>
                                 )}
                             </FormItem>
                         </Col>
@@ -777,7 +777,7 @@ class ProductDetail extends Component {
                                             })(
                                                 <InputNumber style={{
                                                     width: '100%'
-                                                }} placeholder="请输入价格" min={0.00} max={9999.00} step={0.01}/>
+                                                }} placeholder="请输入价格" min={0.00} max={9999.00} step={1}/>
                                             )}
                                         </div>
                                         {
@@ -807,7 +807,7 @@ class ProductDetail extends Component {
                                                             <InputNumber style={{
                                                                 width: '100%'
                                                             }} placeholder={memberLevel.member_level_name + '价格'}
-                                                                         min={0.00} max={9999.00} step={0.01}/>
+                                                                         min={0.00} max={9999.00} step={1}/>
                                                         )}
                                                     </div>
                                                 )
@@ -840,7 +840,9 @@ class ProductDetail extends Component {
                                 item.attribute_type == 'NORMAL' ?
                                     <FormItem key={item.attribute_id} {...Helper.formItemLayout}
                                               label={item.attribute_name}>
-                                        {getFieldDecorator('categoryAttributeValueList.' + item.attribute_id)(
+                                        {getFieldDecorator('categoryAttributeValueList.' + item.attribute_id, {
+                                            initialValue: ''
+                                        })(
                                             <Input type="text" style={{
                                                 width: Helper.inputWidth
                                             }} placeholder={'请输入' + item.attribute_name}/>

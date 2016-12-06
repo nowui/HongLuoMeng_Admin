@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Table, Button, Form, Input} from 'antd';
+import {Row, Col, Table, Button, Form, Input, DatePicker} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN, SET_ORDER} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -74,6 +74,7 @@ class OrderIndex extends Component {
     render() {
         const FormItem = Form.Item;
         const {getFieldDecorator} = this.props.form;
+        const {RangePicker} = DatePicker;
 
         const columns = [{
             title: '订单号',
@@ -139,6 +140,16 @@ class OrderIndex extends Component {
                             </FormItem>
                         </Col>
                         <Col sm={8}>
+                            <FormItem {...Helper.formItemSearchLayout} label="日期区间"
+                                      className={styles.contentSearchFormItem}>
+                                {getFieldDecorator('order_time', {
+                                    initialValue: ''
+                                })(
+                                    <RangePicker style={{
+                                        width: Helper.inputSearchWidth
+                                    }}/>
+                                )}
+                            </FormItem>
                         </Col>
                         <Col sm={8} style={{
                             textAlign: 'right'
