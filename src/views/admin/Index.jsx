@@ -98,6 +98,8 @@ class AdminIndex extends Component {
                 admin_id: admin_id
             },
             success: function (data) {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

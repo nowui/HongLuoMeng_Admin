@@ -84,6 +84,8 @@ class MemberIndex extends Component {
                 member_id: member_id
             },
             success: function () {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

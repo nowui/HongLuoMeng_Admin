@@ -73,10 +73,16 @@ class AuthorizationIndex extends Component {
 
     render() {
         const columns = [{
+            title: '授权用户',
+            dataIndex: 'user_id',
+            key: 'user_id'
+        }, {
+            width: 150,
             title: '创建时间',
             dataIndex: 'authorization_create_time',
             key: 'authorization_create_time'
         }, {
+            width: 150,
             title: '过期时间',
             dataIndex: 'authorization_expire_time',
             key: 'authorization_expire_time'

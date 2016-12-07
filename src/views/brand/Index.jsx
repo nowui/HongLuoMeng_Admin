@@ -92,6 +92,8 @@ class BrandIndex extends Component {
                 brand_id: brand_id
             },
             success: function (data) {
+                Helper.notificationSuccess();
+
                 self.load(self.props.brandReducer.page);
             },
             complete: function () {

@@ -90,6 +90,8 @@ class AttributeIndex extends Component {
                 attribute_id: attribute_id
             },
             success: function (data) {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

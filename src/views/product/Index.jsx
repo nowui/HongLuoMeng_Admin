@@ -101,6 +101,8 @@ class ProductIndex extends Component {
                 product_id: product_id
             },
             success: function () {
+                Helper.notificationSuccess();
+
                 self.load(self.props.productReducer.page);
             },
             complete: function () {
@@ -120,15 +122,43 @@ class ProductIndex extends Component {
             dataIndex: 'product_name',
             key: 'product_name'
         }, {
-            width: 100,
+            width: 155,
             title: '标记',
             dataIndex: 'product_is_hot',
             key: 'product_is_hot',
             render: (text, record, index) => (
-                record.product_is_hot ?
-                    '精选'
-                    :
-                    ''
+                <span>
+                    {
+                        record.product_is_new ?
+                            '新品 '
+                            :
+                            ''
+                    }
+                    {
+                        record.product_is_recommend ?
+                            '推荐 '
+                            :
+                            ''
+                    }
+                    {
+                        record.product_is_bargain ?
+                            '特价 '
+                            :
+                            ''
+                    }
+                    {
+                        record.product_is_hot ?
+                            '精选 '
+                            :
+                            ''
+                    }
+                    {
+                        record.product_is_sell_out ?
+                            '卖完 '
+                            :
+                            ''
+                    }
+                </span>
             )
         }, {
             width: 100,

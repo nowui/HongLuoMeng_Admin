@@ -134,6 +134,8 @@ class CategoryIndex extends Component {
                 category_id: category_id
             },
             success: function () {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

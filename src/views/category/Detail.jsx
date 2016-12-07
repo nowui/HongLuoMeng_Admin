@@ -145,7 +145,8 @@ class CategoryDetail extends Component {
                             rules: [{
                                 required: true,
                                 message: Helper.required
-                            }]
+                            }],
+                            initialValue: ''
                         })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
@@ -153,21 +154,27 @@ class CategoryDetail extends Component {
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="键值">
-                        {getFieldDecorator('category_key')(
+                        {getFieldDecorator('category_key', {
+                            initialValue: ''
+                        })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入键值"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="数值">
-                        {getFieldDecorator('category_value')(
+                        {getFieldDecorator('category_value', {
+                            initialValue: ''
+                        })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入数值"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="描述">
-                        {getFieldDecorator('category_description')(
+                        {getFieldDecorator('category_description', {
+                            initialValue: ''
+                        })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入描述"/>
@@ -179,7 +186,8 @@ class CategoryDetail extends Component {
                                 type: 'number',
                                 required: true,
                                 message: Helper.required
-                            }]
+                            }],
+                            initialValue: 0
                         })(
                             <InputNumber style={{
                                 width: Helper.inputWidth

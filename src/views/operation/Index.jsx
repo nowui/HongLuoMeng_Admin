@@ -135,6 +135,8 @@ class OperationIndex extends Component {
                 operation_id: operation_id
             },
             success: function () {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

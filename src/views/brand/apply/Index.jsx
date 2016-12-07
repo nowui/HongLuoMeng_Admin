@@ -78,6 +78,8 @@ class BrandApplyIndex extends Component {
                 user_id: user_id
             },
             success: function (data) {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

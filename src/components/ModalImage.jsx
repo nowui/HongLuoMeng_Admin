@@ -117,7 +117,7 @@ class ModalImage extends React.Component {
         });
     }
 
-    onClickNormal() {
+    onClickList() {
         this.setState({
             isUploadProduct: false
         });
@@ -217,22 +217,27 @@ class ModalImage extends React.Component {
                         style={{float: 'left', marginLeft: 5}}>上传等比例图片</Button>,
                 <div key="normal" style={{float: 'left', marginLeft: 10}}>
                     <Upload {...props}>
-                        <Button type="ghost" onClick={this.onClickNormal.bind(this)}>
+                        <Button type="ghost">
                             <Icon type="cloud-upload"/>上传普通图片
                         </Button>
                     </Upload>
                 </div>,
+                <div key="list" style={{float: 'left', marginLeft: 10}}>
+                    <Button type="ghost" onClick={this.onClickList.bind(this)}>
+                        <Icon type="picture"/>查看图片列表
+                    </Button>
+                </div>,
                 <Button key="back" type="ghost" size="default" icon="cross-circle"
                         onClick={this.onClickCancel.bind(this)}>关闭</Button>,
                 <Button key="submit" type="primary" size="default" icon="check-circle"
-                        onClick={this.onClickOk.bind(this)}>确定</Button>
+                        onClick={this.state.isUploadProduct ? this.onClickUpload.bind(this) : this.onClickOk.bind(this)}>{this.state.isUploadProduct ? '上传' : '确定'}</Button>
             ]}>
                 <Spin size="large" spinning={this.state.isLoad}>
                     {
                         this.state.isUploadProduct ?
-                            <div style={{minHeight: 470}}>
+                            <div style={{minHeight: 460}}>
                                 <Cropper
-                                    style={{height: 400, width: '100%'}}
+                                    style={{height: 420, width: '100%'}}
                                     aspectRatio={1 / 1}
                                     preview=".img-preview"
                                     guides={false}
@@ -243,9 +248,6 @@ class ModalImage extends React.Component {
                                 />
                                 <br/>
                                 <input type="file" onChange={this.onChangeCropper.bind(this)}/>
-                                <br/>
-                                <Button key="submit" type="primary" size="default" icon="check-circle"
-                                        onClick={this.onClickUpload.bind(this)}>上传</Button>
                             </div>
                             :
                             ''

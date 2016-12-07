@@ -91,6 +91,8 @@ class MemberLevelIndex extends Component {
                 member_level_id: member_level_id
             },
             success: function () {
+                Helper.notificationSuccess();
+
                 self.load(self.state.page);
             },
             complete: function () {

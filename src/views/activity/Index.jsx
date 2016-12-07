@@ -91,6 +91,8 @@ class ActivityIndex extends Component {
                 activity_id: activity_id
             },
             success: function (data) {
+                Helper.notificationSuccess();
+
                 self.load(self.props.activityReducer.page);
             },
             complete: function () {
