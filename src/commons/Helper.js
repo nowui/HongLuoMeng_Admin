@@ -29,6 +29,7 @@ const Helper = {
     message: '提示',
     description: '操作成功',
     token: 'token',
+    adminName: 'admin_name',
     required: '不能为空',
     delete: '删除后将无法恢复，您确定要删除吗？',
     yes: '确定',
@@ -70,11 +71,18 @@ const Helper = {
     getToken() {
         return localStorage.getItem(this.token);
     },
-    login: function (token) {
+    getAdminName() {
+        return localStorage.getItem(this.adminName);
+    },
+    login: function (token, admin_name) {
         localStorage.setItem(this.token, token);
+
+        localStorage.setItem(this.adminName, admin_name);
     },
     logout: function () {
         localStorage.removeItem(this.token);
+
+        localStorage.removeItem(this.adminName);
     }
 };
 

@@ -64,6 +64,10 @@ class OrderIndex extends Component {
         this.load(currentPage);
     }
 
+    onClickSearch() {
+        this.load(1);
+    }
+
     onClickEdit(order_id) {
         this.props.router.push({
             pathname: '/order/edit/' + order_id,
@@ -121,7 +125,7 @@ class OrderIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="search" size="default"
-                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                                onClick={this.onClickSearch.bind(this)}>搜索</Button>
                     </Col>
                 </Row>
 

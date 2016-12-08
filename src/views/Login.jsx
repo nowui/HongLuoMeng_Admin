@@ -13,8 +13,8 @@ class Login extends Component {
 
         this.state = {
             isLoad: false,
-            user_account: 'admin',
-            user_password: 'admin'
+            user_account: '',
+            user_password: ''
         }
     }
 
@@ -40,7 +40,7 @@ class Login extends Component {
                 url: '/admin/login',
                 data: values,
                 success: function (data) {
-                    Helper.login(data.token);
+                    Helper.login(data.token, data.admin_name);
 
                     Helper.notificationSuccessMessage("登录成功");
 

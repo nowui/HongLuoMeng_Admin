@@ -64,30 +64,8 @@ class BrandApplyIndex extends Component {
         })
     }
 
-    review = function (brand_id, user_id) {
-        let self = this;
-
-        self.props.setAction(SET_SPIN, {
-            isLoad: true
-        });
-
-        Helper.ajax({
-            url: '/brand/apply/review',
-            data: {
-                brand_id: brand_id,
-                user_id: user_id
-            },
-            success: function (data) {
-                Helper.notificationSuccess();
-
-                self.load(self.state.page);
-            },
-            complete: function () {
-                self.props.setAction(SET_SPIN, {
-                    isLoad: false
-                });
-            }
-        });
+    onClicReload() {
+        this.load(this.state.page);
     }
 
     onClickEdit(brand_id, user_id) {
@@ -100,6 +78,11 @@ class BrandApplyIndex extends Component {
     render() {
         const columns = [{
             title: '会员名称',
+            dataIndex: 'member_name',
+            key: 'member_name'
+        }, {
+            width: 150,
+            title: '申请人',
             dataIndex: 'member_real_name',
             key: 'member_real_name'
         }, {
@@ -152,7 +135,7 @@ class BrandApplyIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className="button-reload"
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                                onClick={this.onClicReload.bind(this)}>刷新</Button>
                     </Col>
                 </Row>
 

@@ -63,6 +63,10 @@ class AttributeIndex extends Component {
         });
     }
 
+    onClicReload() {
+        this.load(this.state.page);
+    }
+
     onClickAdd(event) {
         this.props.router.push({
             pathname: '/attribute/add',
@@ -143,7 +147,7 @@ class AttributeIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className={styles.buttonReload}
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                                onClick={this.onClicReload.bind(this)}>刷新</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>

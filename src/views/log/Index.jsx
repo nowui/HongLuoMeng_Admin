@@ -67,6 +67,10 @@ class LogIndex extends Component {
         });
     }
 
+    onClickSearch() {
+        this.load(1);
+    }
+
     onClickEdit(log_id) {
         this.props.router.push({
             pathname: '/log/edit/' + log_id,
@@ -129,7 +133,7 @@ class LogIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="search" size="default"
-                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                                onClick={this.onClickSearch.bind(this)}>搜索</Button>
                     </Col>
                 </Row>
 

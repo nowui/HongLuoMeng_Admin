@@ -64,7 +64,11 @@ class ActivityIndex extends Component {
         });
     }
 
-    onClickAdd(event) {
+    onClicReload() {
+        this.load(this.state.page);
+    }
+
+    onClickAdd() {
         this.props.router.push({
             pathname: '/activity/add',
             query: {}
@@ -93,7 +97,7 @@ class ActivityIndex extends Component {
             success: function (data) {
                 Helper.notificationSuccess();
 
-                self.load(self.props.activityReducer.page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
@@ -139,7 +143,7 @@ class ActivityIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className={styles.buttonReload}
-                                onClick={this.load.bind(this, this.state.page)}>刷新</Button>
+                                onClick={this.onClicReload.bind(this)}>刷新</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>

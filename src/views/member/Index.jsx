@@ -64,6 +64,10 @@ class MemberIndex extends Component {
         });
     }
 
+    onClickSearch() {
+        this.load(1);
+    }
+
     onClickEdit(member_id) {
         this.props.router.push({
             pathname: '/member/edit/' + member_id,
@@ -174,7 +178,7 @@ class MemberIndex extends Component {
                             textAlign: 'right'
                         }}>
                             <Button type="ghost" icon="search" size="default" className="button-reload"
-                                    onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                                    onClick={this.onClickSearch.bind(this)}>搜索</Button>
                         </Col>
                     </Row>
                 </Form>

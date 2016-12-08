@@ -107,7 +107,8 @@ class ModalImage extends React.Component {
         this.load(1);
 
         this.setState({
-            visible: true
+            visible: true,
+            isUploadProduct: false
         });
     }
 
@@ -212,9 +213,9 @@ class ModalImage extends React.Component {
         return (
             <Modal title="我的图片" width={910} visible={this.state.visible} closable={false} maskClosable={false}
                    onOk={this.onClickOk} onCancel={this.onClickCancel} footer={[
-                <Button key="product" type="ghost" size="default" icon="cloud-upload"
-                        onClick={this.onClickProduct.bind(this)}
-                        style={{float: 'left', marginLeft: 5}}>上传等比例图片</Button>,
+                <a key="product" href="javascript:;" className={styles.upload} style={{float: 'left', marginLeft: 5}} onClick={this.onClickProduct.bind(this)}>
+                    <Icon type="upload" style={{ marginRight: 5}}/><input type="file" onChange={this.onChangeCropper.bind(this)}/>上传等比例图片
+                </a>,
                 <div key="normal" style={{float: 'left', marginLeft: 10}}>
                     <Upload {...props}>
                         <Button type="ghost">
@@ -237,17 +238,17 @@ class ModalImage extends React.Component {
                         this.state.isUploadProduct ?
                             <div style={{minHeight: 460}}>
                                 <Cropper
-                                    style={{height: 420, width: '100%'}}
-                                    aspectRatio={1 / 1}
+                                    style={{height: 460, width: '100%'}}
+                                    aspectRatio={100 / 100}
+                                    autoCropArea={1.0}
+                                    minCropBoxWidth={100}
                                     preview=".img-preview"
-                                    guides={false}
+                                    guides={true}
                                     src={this.state.src}
                                     ref={cropper => {
                                         this.cropper = cropper;
                                     }}
                                 />
-                                <br/>
-                                <input type="file" onChange={this.onChangeCropper.bind(this)}/>
                             </div>
                             :
                             ''

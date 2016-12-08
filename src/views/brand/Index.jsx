@@ -65,6 +65,10 @@ class BrandIndex extends Component {
         });
     }
 
+    onClickSearch() {
+        this.load(1);
+    }
+
     onClickAdd(event) {
         this.props.router.push({
             pathname: '/brand/add',
@@ -94,7 +98,7 @@ class BrandIndex extends Component {
             success: function (data) {
                 Helper.notificationSuccess();
 
-                self.load(self.props.brandReducer.page);
+                self.load(self.state.page);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
@@ -148,7 +152,7 @@ class BrandIndex extends Component {
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="search" size="default" className={styles.buttonReload}
-                                onClick={this.load.bind(this, this.state.page)}>搜索</Button>
+                                onClick={this.onClickSearch.bind(this)}>搜索</Button>
                         <Button type="primary" icon="plus-circle" size="default"
                                 onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>
