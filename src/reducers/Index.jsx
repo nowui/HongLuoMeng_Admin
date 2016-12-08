@@ -17,6 +17,7 @@ import brandApplyReducer from './BrandApply';
 import categoryReducer from './Category';
 import categoryAttributeReducer from './CategoryAttribute';
 import activityReducer from './Activity';
+import topicReducer from './Topic';
 
 const rootReducer = combineReducers({
     spinReducer,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
     categoryReducer,
     categoryAttributeReducer,
     activityReducer,
+    topicReducer,
     routing: routerReducer
 });
 

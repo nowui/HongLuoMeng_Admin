@@ -115,7 +115,7 @@ class Main extends Component {
                         <Col span={12} style={{
                             textAlign: 'right'
                         }}>
-                            <span style={{fontSize: '14px', position: 'absolute', width: '200px', right: '60'}}>{Helper.getAdminName()}</span>
+                            <span style={{fontSize: '14px', position: 'absolute', width: '200px', right: '60px'}}>{Helper.getAdminName()}</span>
                             <Link to='/logout'><Icon type="poweroff" style={{
                                 fontSize: '24px',
                                 marginRight: '20px',

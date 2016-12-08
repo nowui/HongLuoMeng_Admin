@@ -29,3 +29,5 @@ export const SET_CATEGORY = 'SET_CATEGORY';
 export const SET_CATEGORY_ATTRIBUTE = 'SET_CATEGORY_ATTRIBUTE';
 
 export const SET_ACTIVITY = 'SET_ACTIVITY';
+
+export const SET_TOPIC = 'SET_TOPIC';
