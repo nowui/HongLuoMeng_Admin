@@ -113,17 +113,22 @@ class TopicIndex extends Component {
             dataIndex: 'member_name',
             key: 'member_name'
         }, {
+            width: 150,
+            title: '创建时间',
+            dataIndex: 'system_create_time',
+            key: 'system_create_time'
+        }, {
             width: 100,
             title: '操作',
             dataIndex: '',
             render: (text, record, index) => (
                 <span>
-                  <a onClick={this.onClickEdit.bind(this, record.topic_id)}>修改</a>
-                  <span className="ant-divider"/>
-                  <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
-                              onConfirm={this.onClickDel.bind(this, record.topic_id)}>
-                    <a>删除</a>
-                  </Popconfirm>
+                  <a onClick={this.onClickEdit.bind(this, record.topic_id)}>查看</a>
+                  {/*<span className="ant-divider"/>*/}
+                  {/*<Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}*/}
+                              {/*onConfirm={this.onClickDel.bind(this, record.topic_id)}>*/}
+                    {/*<a>删除</a>*/}
+                  {/*</Popconfirm>*/}
                 </span>
             )
         }];
@@ -139,13 +144,11 @@ class TopicIndex extends Component {
             <div>
                 <Row className={styles.contentTitle}>
                     <Col span={12}>
-                        <h2>活动列表</h2>
+                        <h2>红圈列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button type="default" icon="reload" size="default" className={styles.buttonReload}
                                 onClick={this.onClicReload.bind(this)}>刷新</Button>
-                        <Button type="primary" icon="plus-circle" size="default"
-                                onClick={this.onClickAdd.bind(this)}>新增</Button>
                     </Col>
                 </Row>
 

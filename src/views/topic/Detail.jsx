@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Button, Form, Input, InputNumber} from 'antd';
-import InputImage from '../../components/InputImage';
-import HtmlEditor from '../../components/HtmlEditor';
+import {Row, Col, Table, Button, Form, Input} from 'antd';
 import {connect} from 'react-redux';
 import {SET_SPIN} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
@@ -10,15 +8,17 @@ import Helper from '../../commons/Helper';
 
 import styles from '../Style.less';
 
-class ActivityDetail extends Component {
+class TopicDetail extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            categoryList: [],
-            topic_image: [],
-            topic_content: ''
+            topic: {
+                topic_image: [],
+                topic_like_list: [],
+                topic_comment_list: []
+            }
         }
     }
 
@@ -43,23 +43,13 @@ class ActivityDetail extends Component {
                 topic_id: self.props.params.topic_id
             },
             success: function (data) {
-                let topic_image = [];
-
-                if (self.props.route.path.indexOf('/edit') > -1) {
-                    if (data.topic_image != '') {
-                        topic_image.push(data.topic_image);
-                    }
-                }
-
                 self.setState({
-                    topic_image: topic_image
+                    topic: data
                 });
 
                 if (self.props.route.path.indexOf('/edit') > -1) {
                     self.props.form.setFieldsValue(data);
                 }
-
-                self.refs.htmlEditor.init(data.topic_content);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
@@ -78,81 +68,81 @@ class ActivityDetail extends Component {
     onClickSubmit(event) {
         event.preventDefault();
 
-        this.props.form.validateFields((errors, values) => {
-            if (!!errors) {
-                return;
-            }
-
-            let self = this;
-
-            self.props.setAction(SET_SPIN, {
-                isLoad: true
-            });
-
-            let type = self.props.route.path.indexOf('/edit') > -1 ? 'update' : 'save';
-
-            values.topic_id = self.props.params.topic_id;
-            values.topic_image = JSON.stringify(self.state.topic_image);
-
-            Helper.ajax({
-                url: '/topic/' + type,
-                data: values,
-                success: function (data) {
-                    Helper.notificationSuccess();
-
-                    self.props.router.goBack();
-                },
-                complete: function () {
-                    self.props.setAction(SET_SPIN, {
-                        isLoad: false
-                    });
-                }
-            });
-        });
-    }
-
-    onChangeImage(list) {
-        this.setState({
-            topic_image: list
-        });
-    }
-
-    onChangeContent(content) {
-        this.setState({
-            topic_content: content
-        });
+        this.props.router.goBack();
     }
 
     render() {
         const FormItem = Form.Item;
         const {getFieldDecorator} = this.props.form;
 
+        const likeColumns = [{
+            title: '会员姓名',
+            dataIndex: 'member.member_name',
+            key: 'member_name'
+        }, {
+            width: 150,
+            title: '创建时间',
+            dataIndex: 'system_create_time',
+            key: 'system_create_time'
+        }];
+
+        const commentColumns = [{
+            width: 100,
+            title: '会员姓名',
+            dataIndex: 'member.member_name',
+            key: 'member_name'
+        }, {
+            title: '评论',
+            dataIndex: 'topic_comment_text',
+            key: 'topic_comment_text'
+        }, {
+            width: 150,
+            title: '创建时间',
+            dataIndex: 'system_create_time',
+            key: 'system_create_time'
+        }];
+
         return (
             <div>
                 <Row className={styles.contentTitle + ' ' + styles.contentTitleBottom}>
                     <Col span={12}>
-                        <h2>活动表单</h2>
+                        <h2>红圈表单</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>
                     </Col>
                 </Row>
                 <Form horizontal className={styles.contentMain + ' ' + styles.contentMainPaddingTop}>
-                    <FormItem {...Helper.formItemLayout} label="文字">
+                    <FormItem {...Helper.formItemLayout} label="图片">
+                        {
+                            this.state.topic.topic_image.map(function (item, index) {
+                                return (
+                                    <img key={index} src={Helper.host + item} style={{
+                                        width: 100,
+                                        height: 100,
+                                        marginRight: 5
+                                    }}/>
+                                )
+                            }.bind(this))
+                        }
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="内容">
                         {getFieldDecorator('topic_text', {
                             rules: [{
                                 required: true,
                                 message: Helper.required
                             }]
                         })(
-                            <Input type="text" style={{
-                                width: Helper.inputWidth
-                            }} placeholder="请输入文字"/>
+                            <Input type="textarea" rows={5} style={{
+                                width: '100%'
+                            }} placeholder="请输入内容"/>
                         )}
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="图片">
-                        <InputImage value={this.state.topic_image}
-                                    onChangeImage={this.onChangeImage.bind(this)}/>
+                    <FormItem {...Helper.formItemLayout} label="点赞">
+                        <Table columns={likeColumns} dataSource={this.state.topic.topicLikeList} pagination={false} size="small" bordered/>
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="评论">
+                        <Table columns={commentColumns} dataSource={this.state.topic.topicCommentList} pagination={false} size="small" bordered/>
                     </FormItem>
                     <FormItem wrapperCol={{
                         offset: Helper.formItemLayout.labelCol.span
@@ -169,8 +159,8 @@ class ActivityDetail extends Component {
     }
 }
 
-ActivityDetail = Form.create({})(ActivityDetail);
+TopicDetail = Form.create({})(TopicDetail);
 
 export default withRouter(connect((state) => state, {
     setAction
-})(ActivityDetail));
+})(TopicDetail));
