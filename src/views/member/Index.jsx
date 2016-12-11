@@ -110,6 +110,11 @@ class MemberIndex extends Component {
             key: 'member_name'
         }, {
             width: 100,
+            title: '真是姓名',
+            dataIndex: 'member_real_name',
+            key: 'member_real_name'
+        }, {
+            width: 100,
             title: '微博粉丝数',
             dataIndex: 'member_weibo_fans',
             key: 'member_weibo_fans'

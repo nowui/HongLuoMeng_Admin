@@ -65,6 +65,7 @@ import OrderDetail from '../views/order/Detail';
 
 import TopicIndex from '../views/topic/Index';
 import TopicDetail from '../views/topic/Detail';
+import TopicCommentIndex from '../views/topic/CommentIndex';
 
 import ActivityIndex from '../views/activity/Index';
 import ActivityDetail from '../views/activity/Detail';
@@ -162,6 +163,7 @@ const Routes = ({history = history}) => <Provider store={store}>
                 <Route path="topic/index" component={TopicIndex}/>
                 <Route path="topic/add" component={TopicDetail}/>
                 <Route path="topic/edit/:topic_id" component={TopicDetail}/>
+                <Route path="topic/comment/index" component={TopicCommentIndex}/>
             </Route>
             <Route path="login" component={Login}/>
             <Route path="logout" component={Logout}/>
