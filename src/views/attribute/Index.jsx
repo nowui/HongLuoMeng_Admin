@@ -153,7 +153,7 @@ class AttributeIndex extends Component {
                     </Col>
                 </Row>
 
-                <div>
+                <div className={styles.contentMain}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>

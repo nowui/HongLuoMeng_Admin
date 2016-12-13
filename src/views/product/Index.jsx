@@ -296,7 +296,7 @@ class ProductIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentSearchMain + ' ' + styles.contentSearchMainPaddingTop}>
+                <div className={styles.contentSearchTwoRowMain + ' ' + styles.contentSearchMainPaddingTop}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>

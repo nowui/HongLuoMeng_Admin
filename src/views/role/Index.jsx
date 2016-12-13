@@ -172,7 +172,7 @@ class RoleIndex extends Component {
         let self = this;
 
         setTimeout(function () {
-            self.load(self.state.page);
+            self.load(1);
         }, 1);
     }
 

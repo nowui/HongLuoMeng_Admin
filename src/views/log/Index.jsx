@@ -185,7 +185,7 @@ class LogIndex extends Component {
                     </Row>
                 </Form>
 
-                <div className={styles.contentMainPaddingTop}>
+                <div className={styles.contentSearchMain + ' ' + styles.contentMainSearchPaddingTop}>
                     <Table columns={columns} dataSource={this.state.list} pagination={pagination} bordered/>
                 </div>
             </div>

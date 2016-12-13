@@ -31,3 +31,7 @@ export const SET_CATEGORY_ATTRIBUTE = 'SET_CATEGORY_ATTRIBUTE';
 export const SET_ACTIVITY = 'SET_ACTIVITY';
 
 export const SET_TOPIC = 'SET_TOPIC';
+
+export const SET_PAGE = 'SET_PAGE';
+
+export const SET_PRODUCT_COLLECT = 'SET_PRODUCT_COLLECT';

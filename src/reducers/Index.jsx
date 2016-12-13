@@ -18,6 +18,8 @@ import categoryReducer from './Category';
 import categoryAttributeReducer from './CategoryAttribute';
 import activityReducer from './Activity';
 import topicReducer from './Topic';
+import pageReducer from './Page';
+import productCollectReducer from './ProductCollect';
 
 const rootReducer = combineReducers({
     spinReducer,
@@ -37,6 +39,8 @@ const rootReducer = combineReducers({
     categoryAttributeReducer,
     activityReducer,
     topicReducer,
+    pageReducer,
+    productCollectReducer,
     routing: routerReducer
 });
 

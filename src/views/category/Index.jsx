@@ -242,9 +242,12 @@ class CategoryIndex extends Component {
                     </Col>
                 </Row>
 
-                <Table columns={columns} dataSource={this.state.category.children}
-                       expandedRowKeys={this.state.expandedRowKeys}
-                       onExpand={this.onRowClick.bind(this)} pagination={pagination} bordered/>
+                <div className={styles.contentMain}>
+                    <Table columns={columns} dataSource={this.state.category.children}
+                           expandedRowKeys={this.state.expandedRowKeys}
+                           onExpand={this.onRowClick.bind(this)} pagination={pagination} bordered/>
+                </div>
+
             </div>
         )
     }

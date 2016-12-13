@@ -14,6 +14,7 @@ import Index from '../views/Index';
 
 import ProductIndex from '../views/product/Index';
 import ProductDetail from '../views/product/Detail';
+import ProductCollectIndex from '../views/product/CollectIndex';
 import ProductCategoryIndex from '../views/product/category/Index';
 import ProductCategoryDetail from '../views/product/category/Detail';
 import ProductCategoryAttributeIndex from '../views/product/category/attribute/Index';
@@ -70,6 +71,9 @@ import TopicCommentIndex from '../views/topic/CommentIndex';
 import ActivityIndex from '../views/activity/Index';
 import ActivityDetail from '../views/activity/Detail';
 
+import PageIndex from '../views/page/Index';
+import PageDetail from '../views/page/Detail';
+
 import Helper from '../commons/Helper';
 
 const validate = function (next, replace, callback) {
@@ -92,6 +96,7 @@ const Routes = ({history = history}) => <Provider store={store}>
                 <Route path="product/index" component={ProductIndex}/>
                 <Route path="product/add" component={ProductDetail}/>
                 <Route path="product/edit/:product_id" component={ProductDetail}/>
+                <Route path="product/collect/index" component={ProductCollectIndex}/>
                 <Route path="product/category/index" component={ProductCategoryIndex}/>
                 <Route path="product/category/add/:parent_id" component={ProductCategoryDetail}/>
                 <Route path="product/category/edit/:category_id" component={ProductCategoryDetail}/>
@@ -159,6 +164,10 @@ const Routes = ({history = history}) => <Provider store={store}>
                 <Route path="activity/index" component={ActivityIndex}/>
                 <Route path="activity/add" component={ActivityDetail}/>
                 <Route path="activity/edit/:activity_id" component={ActivityDetail}/>
+
+                <Route path="page/index" component={PageIndex}/>
+                <Route path="page/add" component={PageDetail}/>
+                <Route path="page/edit/:page_id" component={PageDetail}/>
 
                 <Route path="topic/index" component={TopicIndex}/>
                 <Route path="topic/add" component={TopicDetail}/>
