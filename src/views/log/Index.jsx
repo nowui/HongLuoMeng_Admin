@@ -15,6 +15,9 @@ class LogIndex extends Component {
 
         this.state = {
             page: this.props.logReducer.page,
+            log_url: this.props.logReducer.log_url,
+            log_code: this.props.logReducer.log_code,
+            log_platform: this.props.logReducer.log_platform,
             total: 0,
             list: []
         }
@@ -28,7 +31,10 @@ class LogIndex extends Component {
 
     componentWillUnmount() {
         this.props.setAction(SET_LOG, {
-            page: this.state.page
+            page: this.state.page,
+            log_url: this.state.log_url,
+            log_code: this.state.log_code,
+            log_platform: this.state.log_platform
         });
     }
 
@@ -43,18 +49,25 @@ class LogIndex extends Component {
             isLoad: true
         });
 
+        let log_url = self.props.form.getFieldValue('log_url');
+        let log_code = self.props.form.getFieldValue('log_code');
+        let log_platform = self.props.form.getFieldValue('log_platform');
+
         Helper.ajax({
             url: '/log/list',
             data: {
                 page: currentPage,
                 limit: Helper.limit,
-                log_url: self.props.form.getFieldValue('log_url'),
-                log_code: self.props.form.getFieldValue('log_code'),
-                log_platform: self.props.form.getFieldValue('log_platform')
+                log_url: log_url,
+                log_code: log_code,
+                log_platform: log_platform
             },
             success: function (data) {
                 self.setState({
                     page: currentPage,
+                    log_url: log_url,
+                    log_code: log_code,
+                    log_platform: log_platform,
                     total: data.total,
                     list: data.list
                 });
@@ -142,7 +155,7 @@ class LogIndex extends Component {
                         <Col sm={8}>
                             <FormItem {...Helper.formItemSearchLayout} label="请求地址" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('log_url', {
-                                    initialValue: ''
+                                    initialValue: this.props.logReducer.log_url
                                 })(
                                     <Input type="text" style={{
                                         width: Helper.inputSearchWidth
@@ -153,7 +166,7 @@ class LogIndex extends Component {
                         <Col sm={8}>
                             <FormItem {...Helper.formItemSearchLayout} label="响应状态" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('log_code', {
-                                    initialValue: ''
+                                    initialValue: this.props.logReducer.log_code
                                 })(
                                     <Select style={{
                                         width: Helper.inputSearchWidth
@@ -169,7 +182,7 @@ class LogIndex extends Component {
                         <Col sm={8}>
                             <FormItem {...Helper.formItemSearchLayout} label="请求平台" className={styles.contentSearchFormItem}>
                                 {getFieldDecorator('log_platform', {
-                                    initialValue: ''
+                                    initialValue: this.props.logReducer.log_platform
                                 })(
                                     <Select style={{
                                         width: Helper.inputSearchWidth
