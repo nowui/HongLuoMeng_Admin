@@ -68,7 +68,7 @@ class CommentIndex extends Component {
         this.load(this.state.page);
     }
 
-    onClickDel(topic_id) {
+    onClickDel(topic_comment_id) {
         let self = this;
 
         self.props.setAction(SET_SPIN, {
@@ -76,9 +76,9 @@ class CommentIndex extends Component {
         });
 
         Helper.ajax({
-            url: '/topic/delete',
+            url: '/topic/comment/admin/delete',
             data: {
-                topic_id: topic_id
+                topic_comment_id: topic_comment_id
             },
             success: function (data) {
                 Helper.notificationSuccess();
@@ -114,11 +114,10 @@ class CommentIndex extends Component {
             dataIndex: '',
             render: (text, record, index) => (
                 <span>
-                  {/*<span className="ant-divider"/>*/}
-                  {/*<Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}*/}
-                              {/*onConfirm={this.onClickDel.bind(this, record.topic_id)}>*/}
-                    {/*<a>删除</a>*/}
-                  {/*</Popconfirm>*/}
+                  <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
+                              onConfirm={this.onClickDel.bind(this, record.topic_comment_id)}>
+                    <a>删除</a>
+                  </Popconfirm>
                 </span>
             )
         }];

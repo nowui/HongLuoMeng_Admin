@@ -74,6 +74,9 @@ import ActivityDetail from '../views/activity/Detail';
 import PageIndex from '../views/page/Index';
 import PageDetail from '../views/page/Detail';
 
+import RankingIndex from '../views/ranking/Index';
+import RankingDetail from '../views/ranking/Detail';
+
 import Helper from '../commons/Helper';
 
 const validate = function (next, replace, callback) {
@@ -173,6 +176,10 @@ const Routes = ({history = history}) => <Provider store={store}>
                 <Route path="topic/add" component={TopicDetail}/>
                 <Route path="topic/edit/:topic_id" component={TopicDetail}/>
                 <Route path="topic/comment/index" component={TopicCommentIndex}/>
+
+                <Route path="ranking/index" component={RankingIndex}/>
+                <Route path="ranking/add" component={RankingDetail}/>
+                <Route path="ranking/edit/:ranking_id" component={RankingDetail}/>
             </Route>
             <Route path="login" component={Login}/>
             <Route path="logout" component={Logout}/>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router';
 import {Row, Col, Table, Button, Popconfirm} from 'antd';
 import {connect} from 'react-redux';
-import {SET_SPIN, SET_TOPIC} from '../../commons/Constant';
+import {SET_SPIN, SET_PRODUCT_COLLECT} from '../../commons/Constant';
 import {setAction} from '../../actions/Index';
 import Helper from '../../commons/Helper';
 
@@ -95,7 +95,7 @@ class CollectIndex extends Component {
 
     render() {
         const columns = [{
-            width: 100,
+            width: 150,
             title: '会员姓名',
             dataIndex: 'member_name',
             key: 'member_name'
@@ -137,7 +137,7 @@ class CollectIndex extends Component {
                         <h2>商品收藏列表</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
-                        <Button type="default" icon="reload" size="default" className={styles.buttonReload}
+                        <Button type="default" icon="reload" size="default"
                                 onClick={this.onClicReload.bind(this)}>刷新</Button>
                     </Col>
                 </Row>

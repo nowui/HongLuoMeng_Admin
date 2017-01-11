@@ -90,7 +90,7 @@ class TopicIndex extends Component {
         });
 
         Helper.ajax({
-            url: '/topic/delete',
+            url: '/topic/admin/delete',
             data: {
                 topic_id: topic_id
             },
@@ -124,11 +124,11 @@ class TopicIndex extends Component {
             render: (text, record, index) => (
                 <span>
                   <a onClick={this.onClickEdit.bind(this, record.topic_id)}>查看</a>
-                  {/*<span className="ant-divider"/>*/}
-                  {/*<Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}*/}
-                              {/*onConfirm={this.onClickDel.bind(this, record.topic_id)}>*/}
-                    {/*<a>删除</a>*/}
-                  {/*</Popconfirm>*/}
+                  <span className="ant-divider"/>
+                  <Popconfirm title={Helper.delete} okText={Helper.yes} cancelText={Helper.no}
+                              onConfirm={this.onClickDel.bind(this, record.topic_id)}>
+                    <a>删除</a>
+                  </Popconfirm>
                 </span>
             )
         }];

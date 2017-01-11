@@ -96,56 +96,7 @@ class AdminDetail extends Component {
 
         return (
             <div>
-                <Row className={styles.contentTitle + ' ' + styles.contentTitleBottom}>
-                    <Col span={12}>
-                        <h2>商店表单</h2>
-                    </Col>
-                    <Col span={12} className={styles.contentMenu}>
-                        <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>
-                    </Col>
-                </Row>
-                <Form horizontal className={styles.contentMain + ' ' + styles.contentMainPaddingTop}>
-                    {getFieldDecorator('user_id')(
-                        <Input type="hidden"/>
-                    )}
-                    <FormItem {...Helper.formItemLayout} label="名称">
-                        {getFieldDecorator('admin_name', {
-                            rules: [{
-                                required: true,
-                                message: Helper.required
-                            }]
-                        })(
-                            <Input type="text" style={{
-                                width: Helper.inputWidth
-                            }} placeholder="请输入名称"/>
-                        )}
-                    </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="帐号">
-                        {getFieldDecorator('user_account', {
-                            rules: [{
-                                required: true,
-                                message: Helper.required
-                            }]
-                        })(
-                            <Input type="text" style={{
-                                width: Helper.inputWidth
-                            }} placeholder="请输入帐号"/>
-                        )}
-                    </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="密码">
-                        {getFieldDecorator('user_password')(
-                            <Input type="password" style={{
-                                width: Helper.inputWidth
-                            }} placeholder="请输入密码"/>
-                        )}
-                    </FormItem>
-                    <FormItem wrapperCol={{
-                        offset: Helper.formItemLayout.labelCol.span
-                    }}>
-                        <Button type="primary" icon="check-circle" size="default"
-                                onClick={this.onClickSubmit.bind(this)}>确定</Button>
-                    </FormItem>
-                </Form>
+
             </div>
         )
     }

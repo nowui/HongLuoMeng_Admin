@@ -21,7 +21,8 @@ class ModalImage extends React.Component {
             page: 1,
             total: 0,
             list: [],
-            src: ''
+            src: '',
+            aspectRatio: 100 / 100
         }
     }
 
@@ -140,7 +141,12 @@ class ModalImage extends React.Component {
         this.check(this.state.list);
     }
 
-    onChangeCropper(event) {
+    onChangeCropper(ratio, event) {
+        this.setState({
+            aspectRatio: ratio,
+            src: ''
+        });
+
         let files;
         if (event.dataTransfer) {
             files = event.dataTransfer.files;
@@ -154,7 +160,7 @@ class ModalImage extends React.Component {
             this.setState({
                 src: reader.result
             });
-        }
+        };
 
         reader.readAsDataURL(files[0]);
     }
@@ -187,7 +193,8 @@ class ModalImage extends React.Component {
             complete: function () {
                 self.setState({
                     isLoad: false,
-                    isUploadProduct: false
+                    isUploadProduct: false,
+                    src: ''
                 });
 
                 self.load(1);
@@ -214,7 +221,10 @@ class ModalImage extends React.Component {
             <Modal title="我的图片" width={910} visible={this.state.visible} closable={false} maskClosable={false}
                    onOk={this.onClickOk} onCancel={this.onClickCancel} footer={[
                 <a key="product" href="javascript:;" className={styles.upload} style={{float: 'left', marginLeft: 5}} onClick={this.onClickProduct.bind(this)}>
-                    <Icon type="upload" style={{ marginRight: 5}}/><input type="file" onChange={this.onChangeCropper.bind(this)}/>上传等比例图片
+                    <Icon type="upload" style={{ marginRight: 5}}/><input type="file" onChange={this.onChangeCropper.bind(this, 1 / 1)}/>上传商品图片
+                </a>,
+                <a key="activity" href="javascript:;" className={styles.upload} style={{float: 'left', marginLeft: 5}} onClick={this.onClickProduct.bind(this)}>
+                    <Icon type="upload" style={{ marginRight: 5}}/><input type="file" onChange={this.onChangeCropper.bind(this, 5 / 2)}/>上传活动图片
                 </a>,
                 <div key="normal" style={{float: 'left', marginLeft: 10}}>
                     <Upload {...props}>
@@ -239,7 +249,7 @@ class ModalImage extends React.Component {
                             <div style={{minHeight: 460}}>
                                 <Cropper
                                     style={{height: 460, width: '100%'}}
-                                    aspectRatio={100 / 100}
+                                    aspectRatio={this.state.aspectRatio}
                                     autoCropArea={1.0}
                                     minCropBoxWidth={100}
                                     preview=".img-preview"

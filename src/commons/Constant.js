@@ -35,3 +35,5 @@ export const SET_TOPIC = 'SET_TOPIC';
 export const SET_PAGE = 'SET_PAGE';
 
 export const SET_PRODUCT_COLLECT = 'SET_PRODUCT_COLLECT';
+
+export const SET_RANKING = 'SET_RANKING';

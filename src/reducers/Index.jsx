@@ -20,6 +20,7 @@ import activityReducer from './Activity';
 import topicReducer from './Topic';
 import pageReducer from './Page';
 import productCollectReducer from './ProductCollect';
+import rankingReducer from './Ranking';
 
 const rootReducer = combineReducers({
     spinReducer,
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
     topicReducer,
     pageReducer,
     productCollectReducer,
+    rankingReducer,
     routing: routerReducer
 });
 

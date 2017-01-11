@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router';
-import {Row, Col, Button, Form, Input, InputNumber} from 'antd';
+import {Row, Col, Button, Form, Input, InputNumber, Select} from 'antd';
 import InputImage from '../../components/InputImage';
 import HtmlEditor from '../../components/HtmlEditor';
 import {connect} from 'react-redux';
@@ -10,20 +10,20 @@ import Helper from '../../commons/Helper';
 
 import styles from '../Style.less';
 
-class ActivityDetail extends Component {
+class RankingDetail extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             categoryList: [],
-            activity_image: [],
-            activity_content: ''
+            ranking_image: [],
+            ranking_content: ''
         }
     }
 
     componentDidMount() {
-        this.props.onSelectMenu('/activity/index');
+        this.props.onSelectMenu('/ranking/index');
 
         if (this.props.route.path.indexOf('/edit') > -1) {
             this.load();
@@ -38,29 +38,29 @@ class ActivityDetail extends Component {
         });
 
         Helper.ajax({
-            url: '/activity/find',
+            url: '/ranking/find',
             data: {
-                activity_id: self.props.params.activity_id
+                ranking_id: self.props.params.ranking_id
             },
             success: function (data) {
-                let activity_image = [];
+                let ranking_image = [];
 
                 if (self.props.route.path.indexOf('/edit') > -1) {
-                    if (data.activity_image != '') {
-                        activity_image.push(data.activity_image);
+                    if (data.ranking_image != '') {
+                        ranking_image.push(data.ranking_image);
                     }
                 }
 
                 self.setState({
-                    activity_image: activity_image,
-                    activity_content: data.activity_content
+                    ranking_image: ranking_image,
+                    ranking_content: data.ranking_content
                 });
 
                 if (self.props.route.path.indexOf('/edit') > -1) {
                     self.props.form.setFieldsValue(data);
                 }
 
-                self.refs.htmlEditor.init(data.activity_content);
+                self.refs.htmlEditor.init(data.ranking_content);
             },
             complete: function () {
                 self.props.setAction(SET_SPIN, {
@@ -92,17 +92,17 @@ class ActivityDetail extends Component {
 
             let type = self.props.route.path.indexOf('/edit') > -1 ? 'update' : 'save';
 
-            values.activity_id = self.props.params.activity_id;
-            values.activity_content = self.state.activity_content;
+            values.ranking_id = self.props.params.ranking_id;
+            values.ranking_content = self.state.ranking_content;
 
-            if (self.state.activity_image.length > 0) {
-                values.activity_image = self.state.activity_image[0];
+            if (self.state.ranking_image.length > 0) {
+                values.ranking_image = self.state.ranking_image[0];
             } else {
-                values.activity_image = '';
+                values.ranking_image = '';
             }
 
             Helper.ajax({
-                url: '/activity/' + type,
+                url: '/ranking/' + type,
                 data: values,
                 success: function (data) {
                     Helper.notificationSuccess();
@@ -120,58 +120,102 @@ class ActivityDetail extends Component {
 
     onChangeImage(list) {
         this.setState({
-            activity_image: list
+            ranking_image: list
         });
     }
 
     onChangeContent(content) {
         this.setState({
-            activity_content: content
+            ranking_content: content
         });
     }
 
     render() {
         const FormItem = Form.Item;
         const {getFieldDecorator} = this.props.form;
+        const Option = Select.Option;
 
         return (
             <div>
                 <Row className={styles.contentTitle + ' ' + styles.contentTitleBottom}>
                     <Col span={12}>
-                        <h2>活动表单</h2>
+                        <h2>排行榜表单</h2>
                     </Col>
                     <Col span={12} className={styles.contentMenu}>
                         <Button icon="circle-left" size="default" onClick={this.onClickBack.bind(this)}>返回</Button>
                     </Col>
                 </Row>
                 <Form horizontal className={styles.contentMain + ' ' + styles.contentMainPaddingTop}>
-                    <FormItem {...Helper.formItemLayout} label="名称">
-                        {getFieldDecorator('activity_name', {
+                    <FormItem {...Helper.formItemLayout} label="类型">
+                        {getFieldDecorator('ranking_type', {
                             rules: [{
                                 required: true,
                                 message: Helper.required
                             }]
+                        })(
+                            <Select style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请选择类型">
+                                <Option value="RED">红榜</Option>
+                                <Option value="BLACK">黑榜</Option>
+                            </Select>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="排名">
+                        {getFieldDecorator('ranking_sort', {
+                            rules: [{
+                                type: 'number',
+                                required: true,
+                                message: Helper.required
+                            }],
+                            initialValue: 1
+                        })(
+                            <InputNumber style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入排名" step={1} min={1} max={10}/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="名称">
+                        {getFieldDecorator('ranking_name', {
+                            rules: [{
+                                required: true,
+                                message: Helper.required
+                            }],
+                            initialValue: ''
                         })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
                             }} placeholder="请输入名称"/>
                         )}
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="地址">
-                        {getFieldDecorator('activity_url', {
+                    <FormItem {...Helper.formItemLayout} label="标题">
+                        {getFieldDecorator('ranking_title', {
+                            rules: [{
+                                required: true,
+                                message: Helper.required
+                            }],
                             initialValue: ''
                         })(
                             <Input type="text" style={{
                                 width: Helper.inputWidth
-                            }} placeholder="请输入Url"/>
+                            }} placeholder="请输入标题"/>
+                        )}
+                    </FormItem>
+                    <FormItem {...Helper.formItemLayout} label="来源">
+                        {getFieldDecorator('ranking_source', {
+                            initialValue: ''
+                        })(
+                            <Input type="text" style={{
+                                width: Helper.inputWidth
+                            }} placeholder="请输入来源"/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="图片">
-                        <InputImage value={this.state.activity_image} limit={1}
+                        <InputImage value={this.state.ranking_image} limit={1}
                                     onChangeImage={this.onChangeImage.bind(this)}/>
                     </FormItem>
-                    <FormItem {...Helper.formItemLayout} label="排序">
-                        {getFieldDecorator('activity_sort', {
+                    <FormItem {...Helper.formItemLayout} label="点击量">
+                        {getFieldDecorator('ranking_hits', {
                             rules: [{
                                 type: 'number',
                                 required: true,
@@ -181,7 +225,7 @@ class ActivityDetail extends Component {
                         })(
                             <InputNumber style={{
                                 width: Helper.inputWidth
-                            }} placeholder="请输入排序" min={0} max={99}/>
+                            }} placeholder="请输入点击量" min={0} max={9999999}/>
                         )}
                     </FormItem>
                     <FormItem {...Helper.formItemLayout} label="内容">
@@ -202,8 +246,8 @@ class ActivityDetail extends Component {
     }
 }
 
-ActivityDetail = Form.create({})(ActivityDetail);
+RankingDetail = Form.create({})(RankingDetail);
 
 export default withRouter(connect((state) => state, {
     setAction
-})(ActivityDetail));
+})(RankingDetail));

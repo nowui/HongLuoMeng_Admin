@@ -119,6 +119,7 @@ class ProductIndex extends Component {
 
     render() {
         const FormItem = Form.Item;
+        const Option = Select.Option;
         const {getFieldDecorator} = this.props.form;
 
         const columns = [{
